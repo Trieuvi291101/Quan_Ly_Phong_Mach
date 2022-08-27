@@ -4,26 +4,25 @@
  */
 package com.trieuvi.controllers;
 
-import com.trieuvi.service.CustomerScheService;
+import com.trieuvi.service.RegulationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author Star
  */
 @Controller
-public class IndexController {
+public class RegulationController {
     @Autowired
-    private CustomerScheService customerScheService;
-            
-    @RequestMapping("/")
-    public String index(Model model) {
-//       model.addAttribute("customeSches", this.customerScheService.getCustomerSches());
+    private RegulationService regulationService;
+    
+    @GetMapping("/regulation")
+    public String list(Model model) {
+         model.addAttribute("regulation", this.regulationService.getRegulations());
         
-    return "index";
+        return "regulation";
     }
 }

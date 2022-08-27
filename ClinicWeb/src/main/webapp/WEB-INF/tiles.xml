@@ -19,4 +19,14 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/index.jsp" />
     </definition>
+    <definition name="customerSche" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý lịch khám" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/customerSche.jsp" />
+    </definition>
+    <definition name="regulation" extends="baseLayout">
+        <put-attribute name="title" value="Quy định" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/regulation.jsp" />
+    </definition>
 </tiles-definitions>

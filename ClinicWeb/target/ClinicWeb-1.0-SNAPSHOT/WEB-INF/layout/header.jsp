@@ -25,6 +25,12 @@
         <li><a class="nav-link">Đặt hẹn</a></li>
     </ul>
     <ul class="navbar-nav">
+        <li><a class="nav-link" href="<c:url value="/customerSche" />">Quản lý lịch khám</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="<c:url value="/regulation" />">Quy định</a></li>
+    </ul>
+    <ul class="navbar-nav">
         <li><a class="nav-link">Đăng nhập</a></li>
     </ul>
 </nav>

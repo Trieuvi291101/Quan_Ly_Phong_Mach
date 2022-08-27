@@ -52,7 +52,7 @@ public class Receipt implements Serializable {
     private MedicalBill medicalBillId;
     @JoinColumn(name = "regulation_id", referencedColumnName = "id")
     @ManyToOne
-    private Reguration regulationId;
+    private Regulation regulationId;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User customerId;
@@ -99,11 +99,11 @@ public class Receipt implements Serializable {
         this.medicalBillId = medicalBillId;
     }
 
-    public Reguration getRegulationId() {
+    public Regulation getRegulationId() {
         return regulationId;
     }
 
-    public void setRegulationId(Reguration regulationId) {
+    public void setRegulationId(Regulation regulationId) {
         this.regulationId = regulationId;
     }
 
