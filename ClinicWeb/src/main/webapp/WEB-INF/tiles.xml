@@ -29,4 +29,14 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/regulation.jsp" />
     </definition>
+    <definition name="stats" extends="baseLayout">
+        <put-attribute name="title" value="Thống kê" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/stats.jsp" />
+    </definition>
+    <definition name="account" extends="baseLayout">
+        <put-attribute name="title" value="Tài khoản" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/account.jsp" />
+    </definition>
 </tiles-definitions>

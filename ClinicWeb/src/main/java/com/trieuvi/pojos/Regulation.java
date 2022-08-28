@@ -44,7 +44,7 @@ public class Regulation implements Serializable {
     @Column(name = "customer_quantity")
     private Integer customerQuantity;
     @OneToMany(mappedBy = "regulationId")
-    private Set<Receipt> receiptSet;
+    private Set<MedicalBillDetail> medicalBillDetailSet;
 
     public Regulation() {
     }
@@ -78,12 +78,12 @@ public class Regulation implements Serializable {
     }
 
     @XmlTransient
-    public Set<Receipt> getReceiptSet() {
-        return receiptSet;
+    public Set<MedicalBillDetail> getMedicalBillDetailSet() {
+        return medicalBillDetailSet;
     }
 
-    public void setReceiptSet(Set<Receipt> receiptSet) {
-        this.receiptSet = receiptSet;
+    public void setMedicalBillDetailSet(Set<MedicalBillDetail> medicalBillDetailSet) {
+        this.medicalBillDetailSet = medicalBillDetailSet;
     }
 
     @Override

@@ -9,8 +9,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,44 +26,51 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Star
  */
 @Entity
-@Table(name = "receipt")
+@Table(name = "medical_bill_detail")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Receipt.findAll", query = "SELECT r FROM Receipt r"),
-    @NamedQuery(name = "Receipt.findById", query = "SELECT r FROM Receipt r WHERE r.id = :id"),
-    @NamedQuery(name = "Receipt.findByTotalPrice", query = "SELECT r FROM Receipt r WHERE r.totalPrice = :totalPrice"),
-    @NamedQuery(name = "Receipt.findByCreatedDate", query = "SELECT r FROM Receipt r WHERE r.createdDate = :createdDate")})
-public class Receipt implements Serializable {
+    @NamedQuery(name = "MedicalBillDetail.findAll", query = "SELECT m FROM MedicalBillDetail m"),
+    @NamedQuery(name = "MedicalBillDetail.findById", query = "SELECT m FROM MedicalBillDetail m WHERE m.id = :id"),
+    @NamedQuery(name = "MedicalBillDetail.findByQuantity", query = "SELECT m FROM MedicalBillDetail m WHERE m.quantity = :quantity"),
+    @NamedQuery(name = "MedicalBillDetail.findByHowToUse", query = "SELECT m FROM MedicalBillDetail m WHERE m.howToUse = :howToUse"),
+    @NamedQuery(name = "MedicalBillDetail.findByTotalPrice", query = "SELECT m FROM MedicalBillDetail m WHERE m.totalPrice = :totalPrice"),
+    @NamedQuery(name = "MedicalBillDetail.findByCreatedDate", query = "SELECT m FROM MedicalBillDetail m WHERE m.createdDate = :createdDate")})
+public class MedicalBillDetail implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "id")
     private Integer id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "quantity")
+    private Integer quantity;
+    @Size(max = 45)
+    @Column(name = "how_to_use")
+    private String howToUse;
+    @Size(max = 45)
     @Column(name = "total_price")
-    private Float totalPrice;
+    private String totalPrice;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
     @JoinColumn(name = "medical_bill_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private MedicalBill medicalBillId;
+    @JoinColumn(name = "medicine_id", referencedColumnName = "id")
+    @ManyToOne
+    private Medicine medicineId;
     @JoinColumn(name = "regulation_id", referencedColumnName = "id")
     @ManyToOne
     private Regulation regulationId;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private User customerId;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private User userId;
 
-    public Receipt() {
+    public MedicalBillDetail() {
     }
 
-    public Receipt(Integer id) {
+    public MedicalBillDetail(Integer id) {
         this.id = id;
     }
 
@@ -75,11 +82,27 @@ public class Receipt implements Serializable {
         this.id = id;
     }
 
-    public Float getTotalPrice() {
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getHowToUse() {
+        return howToUse;
+    }
+
+    public void setHowToUse(String howToUse) {
+        this.howToUse = howToUse;
+    }
+
+    public String getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(Float totalPrice) {
+    public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 
@@ -99,6 +122,14 @@ public class Receipt implements Serializable {
         this.medicalBillId = medicalBillId;
     }
 
+    public Medicine getMedicineId() {
+        return medicineId;
+    }
+
+    public void setMedicineId(Medicine medicineId) {
+        this.medicineId = medicineId;
+    }
+
     public Regulation getRegulationId() {
         return regulationId;
     }
@@ -115,14 +146,6 @@ public class Receipt implements Serializable {
         this.customerId = customerId;
     }
 
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -133,10 +156,10 @@ public class Receipt implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Receipt)) {
+        if (!(object instanceof MedicalBillDetail)) {
             return false;
         }
-        Receipt other = (Receipt) object;
+        MedicalBillDetail other = (MedicalBillDetail) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -145,7 +168,7 @@ public class Receipt implements Serializable {
 
     @Override
     public String toString() {
-        return "com.trieuvi.pojos.Receipt[ id=" + id + " ]";
+        return "com.trieuvi.pojos.MedicalBillDetail[ id=" + id + " ]";
     }
     
 }

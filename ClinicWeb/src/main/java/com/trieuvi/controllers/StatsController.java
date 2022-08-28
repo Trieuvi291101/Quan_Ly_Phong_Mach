@@ -4,7 +4,7 @@
  */
 package com.trieuvi.controllers;
 
-import com.trieuvi.service.CustomerScheService;
+import com.trieuvi.service.StatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Star
  */
 @Controller
-public class CustomerScheController {
+public class StatsController {
     @Autowired
-    private CustomerScheService customerScheService;
+    private StatsService statsService;
     
-    @GetMapping("/customerSche")
-    public String list(Model model) {
-         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
-        
-        return "customerSche";
+    
+    @GetMapping("/stats")
+    public String totalPriceMonthStats(Model model) {
+        model.addAttribute("stats", this.statsService.totalPriceMonthStats(null, null, null));
+        return "stats";
     }
 }

@@ -22,7 +22,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -48,8 +47,6 @@ public class CustomerSche implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "schedule")
     @Temporal(TemporalType.DATE)
     private Date schedule;
@@ -63,7 +60,7 @@ public class CustomerSche implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerSche")
     private Set<MedicalBill> medicalBillSet;
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private User customerId;
 
     public CustomerSche() {
@@ -71,11 +68,6 @@ public class CustomerSche implements Serializable {
 
     public CustomerSche(Integer id) {
         this.id = id;
-    }
-
-    public CustomerSche(Integer id, Date schedule) {
-        this.id = id;
-        this.schedule = schedule;
     }
 
     public Integer getId() {

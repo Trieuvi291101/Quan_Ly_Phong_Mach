@@ -22,13 +22,31 @@
         <li><a class="nav-link" href="#info">Liên hệ</a></li>
     </ul>
     <ul class="navbar-nav">
+        <li><a class="nav-link" href="">Giao dịch</a></li>
+    </ul>
+    <ul class="navbar-nav">
         <li><a class="nav-link">Đặt hẹn</a></li>
     </ul>
     <ul class="navbar-nav">
-        <li><a class="nav-link" href="<c:url value="/customerSche" />">Quản lý lịch khám</a></li>
+        <li><a class="nav-link" href="<c:url value="/customerSche" />">Lịch khám</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="">Lập phiếu khám</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="">Thanh toán</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="">Quản lý</a></li>
     </ul>
     <ul class="navbar-nav">
         <li><a class="nav-link" href="<c:url value="/regulation" />">Quy định</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="<c:url value="/stats" />">Thống kê</a></li>
+    </ul>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="<c:url value="/account" />">Tài khoản</a></li>
     </ul>
     <ul class="navbar-nav">
         <li><a class="nav-link">Đăng nhập</a></li>

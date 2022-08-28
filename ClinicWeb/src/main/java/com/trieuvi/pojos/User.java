@@ -109,12 +109,10 @@ public class User implements Serializable {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<MedicalBill> medicalBillSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    @OneToMany(mappedBy = "customerId")
     private Set<CustomerSche> customerScheSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Set<Receipt> receiptSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Receipt> receiptSet1;
+    @OneToMany(mappedBy = "customerId")
+    private Set<MedicalBillDetail> medicalBillDetailSet;
 
     public User() {
     }
@@ -264,21 +262,12 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Set<Receipt> getReceiptSet() {
-        return receiptSet;
+    public Set<MedicalBillDetail> getMedicalBillDetailSet() {
+        return medicalBillDetailSet;
     }
 
-    public void setReceiptSet(Set<Receipt> receiptSet) {
-        this.receiptSet = receiptSet;
-    }
-
-    @XmlTransient
-    public Set<Receipt> getReceiptSet1() {
-        return receiptSet1;
-    }
-
-    public void setReceiptSet1(Set<Receipt> receiptSet1) {
-        this.receiptSet1 = receiptSet1;
+    public void setMedicalBillDetailSet(Set<MedicalBillDetail> medicalBillDetailSet) {
+        this.medicalBillDetailSet = medicalBillDetailSet;
     }
 
     @Override

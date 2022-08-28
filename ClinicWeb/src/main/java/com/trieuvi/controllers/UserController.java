@@ -4,25 +4,32 @@
  */
 package com.trieuvi.controllers;
 
-import com.trieuvi.service.CustomerScheService;
+import com.trieuvi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
  * @author Star
  */
 @Controller
-public class CustomerScheController {
+public class UserController {
     @Autowired
-    private CustomerScheService customerScheService;
+    private UserService userService;
+//    
+//    @GetMapping("/account")
+//    public String productDetails(Model model, @PathVariable(value = "id") int id) {
+//        model.addAttribute("userid", this.userService.getUserById(id));
+//        return "account";
+//    }
     
-    @GetMapping("/customerSche")
+    @GetMapping("/account")
     public String list(Model model) {
-         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
+         model.addAttribute("user", this.userService.getUser());
         
-        return "customerSche";
+        return "account";
     }
 }
