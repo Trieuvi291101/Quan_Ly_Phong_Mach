@@ -14,4 +14,5 @@ import java.util.List;
 public interface UserRepository { 
     User getUserById(int id);
     List<User> getUser();
+    List<User>getUser(String kw);
 }

@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Star
  */
 @Controller
-public class CustomerScheController {
+public class AppointmentController {
 
     @Autowired
     private CustomerScheService customerScheService;
@@ -27,14 +25,13 @@ public class CustomerScheController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/customerSche")
-    public String list(Model model,@RequestParam(value = "kw", required = false, defaultValue = "") String kw) {
+    @GetMapping("/appointment")
+    public String list(Model model, @RequestParam(value = "kw", required = false, defaultValue = "") String kw) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
         model.addAttribute("user", this.userService.getUser());
         model.addAttribute("users", this.userService.getUser(kw));
-        model.addAttribute("medicalBill", this.customerScheService.getMedicalBill());
 
-        return "customerSche";
+        return "appointment";
     }
 
 }

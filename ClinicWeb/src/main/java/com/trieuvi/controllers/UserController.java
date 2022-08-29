@@ -29,6 +29,7 @@ public class UserController {
     @GetMapping("/account")
     public String list(Model model) {
          model.addAttribute("user", this.userService.getUser());
+         model.addAttribute("users", this.userService.getUser(""));
         
         return "account";
     }

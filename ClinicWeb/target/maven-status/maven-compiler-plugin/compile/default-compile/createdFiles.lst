@@ -38,3 +38,4 @@ com\trieuvi\configs\HibernateConfig.class
 com\trieuvi\pojos\User_.class
 com\trieuvi\pojos\MedicalBill.class
 com\trieuvi\service\UserService.class
+com\trieuvi\controllers\AppointmentController.class

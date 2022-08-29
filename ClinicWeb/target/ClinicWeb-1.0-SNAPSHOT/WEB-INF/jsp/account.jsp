@@ -8,6 +8,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="resources/css/admin-style.css" rel="stylesheet">
 <div class="container mb-2 pb-5" style="border: 1px solid lightgray; margin-top: 60px">
     <h3 class="pt-3" style="font-weight: normal">Thông tin tài khoản</h3>
     <div class="d-md-flex flex-row py-4">

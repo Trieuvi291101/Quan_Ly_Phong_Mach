@@ -25,7 +25,7 @@
         <li><a class="nav-link" href="">Giao dịch</a></li>
     </ul>
     <ul class="navbar-nav">
-        <li><a class="nav-link">Đặt hẹn</a></li>
+        <li><a class="nav-link" href="<c:url value="/appointment" />">Đặt hẹn</a></li>
     </ul>
     <ul class="navbar-nav">
         <li><a class="nav-link" href="<c:url value="/customerSche" />">Lịch khám</a></li>

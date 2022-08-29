@@ -5,6 +5,7 @@
 package com.trieuvi.service.impl;
 
 import com.trieuvi.pojos.CustomerSche;
+import com.trieuvi.pojos.MedicalBill;
 import com.trieuvi.repository.CustomerScheRepository;
 import com.trieuvi.service.CustomerScheService;
 import java.util.List;
@@ -23,6 +24,11 @@ public class CustomerScheServiceImpl implements CustomerScheService{
     @Override
     public List<CustomerSche> getCustomerSches() {
         return this.customerScheRepository.getCustomerSches();
+    }
+
+    @Override
+    public List<MedicalBill> getMedicalBill() {
+        return this.customerScheRepository.getMedicalBill();
     }
     
 }

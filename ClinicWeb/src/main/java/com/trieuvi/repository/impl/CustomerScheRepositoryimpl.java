@@ -5,6 +5,7 @@
 package com.trieuvi.repository.impl;
 
 import com.trieuvi.pojos.CustomerSche;
+import com.trieuvi.pojos.MedicalBill;
 import com.trieuvi.repository.CustomerScheRepository;
 import java.util.List;
 import javax.persistence.Query;
@@ -28,6 +29,13 @@ public class CustomerScheRepositoryimpl implements CustomerScheRepository{
     public List<CustomerSche> getCustomerSches(){
         Session s = this.sessionFactory.getObject().getCurrentSession();
         Query q = s.createQuery("From CustomerSche");
+        return q.getResultList();
+    }
+
+    @Override
+    public List<MedicalBill> getMedicalBill() {
+        Session s = this.sessionFactory.getObject().getCurrentSession();
+        Query q = s.createQuery("From MedicalBill");
         return q.getResultList();
     }
     

@@ -7,6 +7,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link href="resources/css/admin-style.css" rel="stylesheet">
 <div style="margin-top: 60px;">
     <script>
         //Thống kê bệnh nhân
@@ -28,11 +29,11 @@
                 <fieldset style="border: 1px solid black">
                     <legend><h4 class="p-2" style="font-weight: normal; display: inline-block;">Lịch hẹn tiếp theo</h4></legend>
                     <div>
-                    <c:forEach var="c" items="${customerSche}">
-                        <p class="px-4">Số thứ tự: <span>${c.id}</span> </p>
-                        <p class="px-4">Họ tên: <span></span></p>
-                        <p class="px-4">Số điện thoại: <span>${c.schedule}</span></p>
-                    </c:forEach>
+                        <c:forEach var="u" items="${user}">
+                            <p class="px-4">Số thứ tự: <span>${u.id}</span> </p>
+                            <p class="px-4">Họ tên: <span>${u.firstName}</span></p>
+                            <p class="px-4">Số điện thoại: <span>${u.phoneNumber}</span></p>
+                        </c:forEach>
                     </div>
                     <div class="text-center">
                         <em>Không có lịch hẹn tiếp theo!</em>
@@ -49,12 +50,8 @@
         <h3 class="pt-3" style="font-weight: normal">Tra cứu khách hàng</h3>
         <form class="form-inline col-md-12">
             <div class="col-md-5 row">
-                <label for="customer_name">Tên khách hàng:</label>
-                <input style="margin:15px" name="customer_name" type="text" class="form-control" placeholder="Nhap ten khach hang" id="customer_name">
-            </div>
-            <div class="col-md-5 row">
                 <label for="phoneNumber">Số điện thoại:</label>
-                <input style="margin:15px" name="phoneNumber" type="text" class="form-control" placeholder="Nhap so dien thoai" required id="phoneNumber">
+                <input style="margin:15px" name="kw" type="text" class="form-control" placeholder="Nhap ten hoac so dien thoai" required id="kw">
             </div>
             <div class="col-md-2">
                 <button style="margin:15px" type="submit" class="btn btn-primary">Tìm kiếm</button>
@@ -75,19 +72,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{ s[3]+" "+s[2]}}</td>
-                        <td>{{ now.year - s[4] }}</td>
-                        <td>{{ s[1] }}</td>
-                        <td>
-                            {% if s[0].diagnostic_disease %}{{s[0].diagnostic_disease}}{% else %} {% endif %}
-                        </td>
-                    </tr>
+                    <c:forEach items="${users}" var="u">
+                        <c:forEach items="${customerSche}" var="c">
+                            <c:forEach items="${medicalBill}" var="m">
+                                <tr>
+                                    <td>${u.lastName} ${u.firstName}</td>
+                                    <td>${u.birthday}</td>
+                                    <td>${c.schedule}</td>
+                                    <td>${m.diagnosticDisease}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:forEach>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
 
     </div>
-
-
 </div>

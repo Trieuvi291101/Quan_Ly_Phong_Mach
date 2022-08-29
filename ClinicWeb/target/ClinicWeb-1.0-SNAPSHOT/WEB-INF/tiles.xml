@@ -39,4 +39,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/account.jsp" />
     </definition>
+    <definition name="appointment" extends="baseLayout">
+        <put-attribute name="title" value="Đặt hẹn" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/appointment.jsp" />
+    </definition>
 </tiles-definitions>

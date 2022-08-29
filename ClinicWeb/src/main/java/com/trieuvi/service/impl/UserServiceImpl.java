@@ -29,5 +29,11 @@ public class UserServiceImpl implements UserService{
     public List<User> getUser() {
         return this.userRepository.getUser();
     }
+    
+    @Override
+    public List<User> getUser(String kw) {
+        return this.userRepository.getUser(kw);
+    }
+
 }
 

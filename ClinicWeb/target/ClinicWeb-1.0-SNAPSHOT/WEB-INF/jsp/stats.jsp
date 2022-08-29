@@ -30,3 +30,19 @@
         <canvas id="myTotalMonthPriceChart"></canvas>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="<c:url value="/js/stats.js" />"></script>
+<script>
+    window.onload = function () {
+        let data = [];
+        let labels = [];
+
+    <c:forEach items="${myTotalMonthPriceChart}" var="c">
+        data.push(${c[0]});
+        labels.push('$${c[2]}');
+    </c:forEach>
+        
+        cateStats(labels, data);
+    };
+</script>

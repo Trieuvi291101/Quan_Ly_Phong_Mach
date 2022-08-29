@@ -45,17 +45,17 @@ public class StatsRepositoryImpl implements StatsRepository{
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(b.equal(rP.get("medicineId"), rM.get("id")));
         
-        q.multiselect(b.function("MONTH", Integer.class, rP.get("createDate")),
-                b.function("YEAR", Integer.class, rP.get("createDate")),
+        q.multiselect(b.function("MONTH", Integer.class, rP.get("createdDate")),
+                b.function("YEAR", Integer.class, rP.get("createdDate")),
                 b.sum(b.prod(rP.get("quantity"), rP.get("totalPrice"))));
         
         if(fromDate !=null)
-            predicates.add(b.greaterThan(rP.get("createDate"), fromDate));
+            predicates.add(b.greaterThan(rP.get("createdDate"), fromDate));
         if(toDate !=null)
-            predicates.add(b.greaterThan(rP.get("createDate"), toDate));
+            predicates.add(b.greaterThan(rP.get("createdDate"), toDate));
             
-        q.groupBy(b.function("MONTH", Integer.class, rP.get("createDate")),
-                b.function("YEAR", Integer.class, rP.get("createDate")));
+        q.groupBy(b.function("MONTH", Integer.class, rP.get("createdDate")),
+                b.function("YEAR", Integer.class, rP.get("createdDate")));
         
         Query query = session.createQuery(q);
         return query.getResultList();

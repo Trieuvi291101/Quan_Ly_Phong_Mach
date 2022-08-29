@@ -1,6 +1,7 @@
 com.trieuvi.configs.HibernateConfig=org.springframework.stereotype.Component
 com.trieuvi.configs.TilesConfig=org.springframework.stereotype.Component
 com.trieuvi.configs.WebApplicationContextConfig=org.springframework.stereotype.Component
+com.trieuvi.controllers.AppointmentController=org.springframework.stereotype.Component
 com.trieuvi.controllers.CustomerScheController=org.springframework.stereotype.Component
 com.trieuvi.controllers.IndexController=org.springframework.stereotype.Component
 com.trieuvi.controllers.RegulationController=org.springframework.stereotype.Component
