@@ -6,13 +6,16 @@ package com.trieuvi.service;
 
 import com.trieuvi.pojos.User;
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  *
  * @author Star
  */
-public interface UserService {  
+public interface UserService extends UserDetailsService{  
     User getUserById(int id);
+    boolean addUser(User user);
+    List<User> getusers(String username);
     List<User> getCustomer();
     List<User> getUser();
     List<User> getCustomerBykw(String kw);

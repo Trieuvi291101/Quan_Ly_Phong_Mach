@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -65,7 +66,6 @@ public class User implements Serializable {
     @Column(name = "last_name")
     private String lastName;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "birthday")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
@@ -84,7 +84,7 @@ public class User implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 100)
     @Column(name = "password")
     private String password;
     @Size(max = 100)
@@ -113,6 +113,8 @@ public class User implements Serializable {
     private Set<CustomerSche> customerScheSet;
     @OneToMany(mappedBy = "customerId")
     private Set<MedicalBillDetail> medicalBillDetailSet;
+    @Transient
+    private String confirmPassword;
 
     public User() {
     }
@@ -293,6 +295,20 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.trieuvi.pojos.User[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the confirmPassword
+     */
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
     
 }

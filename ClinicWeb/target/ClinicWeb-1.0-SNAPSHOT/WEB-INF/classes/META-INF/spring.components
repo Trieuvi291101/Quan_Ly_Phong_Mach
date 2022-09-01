@@ -1,4 +1,5 @@
 com.trieuvi.configs.HibernateConfig=org.springframework.stereotype.Component
+com.trieuvi.configs.SpringSecurityConfig=org.springframework.stereotype.Component
 com.trieuvi.configs.TilesConfig=org.springframework.stereotype.Component
 com.trieuvi.configs.WebApplicationContextConfig=org.springframework.stereotype.Component
 com.trieuvi.controllers.AppointmentController=org.springframework.stereotype.Component

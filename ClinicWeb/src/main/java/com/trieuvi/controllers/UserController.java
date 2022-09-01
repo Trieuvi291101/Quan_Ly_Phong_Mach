@@ -4,12 +4,16 @@
  */
 package com.trieuvi.controllers;
 
+import com.trieuvi.pojos.User;
 import com.trieuvi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -19,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService userDetailsService;
+    
 //    
 //    @GetMapping("/account")
 //    public String productDetails(Model model, @PathVariable(value = "id") int id) {
@@ -29,9 +34,36 @@ public class UserController {
     
     @GetMapping("/account")
     public String list(Model model) {
-         model.addAttribute("user", this.userService.getUser());
-         model.addAttribute("userId", this.userService.getUserById(1));
+         model.addAttribute("user", this.userDetailsService.getUser());
+         model.addAttribute("userId", this.userDetailsService.getUserById(1));
         
         return "account";
+    }
+    
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+    
+    @GetMapping("/register")
+    public String register(Model model){
+        model.addAttribute("user", new User());
+        return "register";
+    }
+    
+    @PostMapping("/register")
+    public String register(Model model, @ModelAttribute(value = "user") User user){
+        String errMsg = "";
+        if(user.getPassword().equals(user.getConfirmPassword())){
+            if(this.userDetailsService.addUser(user) == true){
+                return "redirect:/login";
+            }else
+                errMsg = "Đa xay ra loi!!!";
+        }else{
+            errMsg = "Mat khau khong khop!!!";
+        }
+        model.addAttribute("errMsg", errMsg);
+        
+        return "register";
     }
 }

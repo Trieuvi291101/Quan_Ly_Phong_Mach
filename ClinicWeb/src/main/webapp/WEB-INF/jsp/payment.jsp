@@ -4,100 +4,65 @@
     Author     : Star
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div id="notification-modal" class="modal fade" tabindex="-1" style="margin-top: 60px">
-    <div class="modal-dialog modal-confirm">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title col-md-12 text-center" id="notification-header"></h4>
-            </div>
-            <div class="modal-body">
-                <p class="text-center" id="notification-content"></p>
-            </div>
-            <div class="modal-footer text-wrap">
-                <button class="btn btn-block" id="notification-button-print" data-dismiss="modal"
-                        onclick="window.location.replace('{{ url_for('static', filename='export/receipt.pdf')
-                        }}')">In hóa đơn và hoàn tất</button>
-                <button class="btn btn-block" id="notification-button-dismiss" data-dismiss="modal"
-                        onclick="">Hoàn tất</button>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div style="border: 1px solid lightgray; margin-top: 60px " >
-    <div>
-        <h3 style="font-weight:normal" class="cold-xs-12 col-md-4 m-4">Các tùy chọn liên quan</h3>
-    </div>
-    <div style="padding: 30px " class="d-md-flex flex-row container b-0" >
-        <div style="text-align: center" class="cold-xs-12 col-md-3 m-4">
-            <a target="_self" href="#" data-toggle="modal" data-target="#myModal"
-               style="text-decoration: none; color: black; font-size: 18px" class="btn btn-link" >
-                <i class="fab fa-paypal position-relative d-block pb-3" style='font-size:90px'>
-                    <span class="badge badge-success cus-top-badge d-inline-block">
-                        {{ order_checkout_num }}</span>
-                </i>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <h4 class="m-t-0 header-title mb-4"><b>Thêm phiếu thu</b></h4>
+                <c:url value="/payment" var="action" />
+                <form:form class="form-horizontal" method="post" action="${action}" modelAttribute="medicalBillDetail">
+                    <%--<form:errors path="*" element="div" cssClass="alert alert-danger" />--%>
 
-                Thanh toán</a>
-            <div class="modal " id="myModal">
-                <div class="modal-dialog modal-sb">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 style="text-align: center" class="modal-title ">Thanh toán</h4>
-                        </div>
-                        <!-- Modal body -->
-                        <div style="text-align: left" class="modal-body">
-                            <form action="/api/payment" method="post">
-                                <div class="d-flex flex-row my-4">
-                                    <label class="col-md-4" >Mã phiếu khám</label>
-                                    <select class="col-md-8" id="MedicalBil-id" name="medical-bill-id"/>
-                                        <option value="{{ order[0] }}">Mã số {{ order[0] }}</option>
-                                    </select>
-                                </div>
-                                <div class="d-flex flex-row my-4">
-                                    <label class="col-md-4" for="payment-method">Phương thức thanh toán</label>
-                                    <select class="col-md-8 px-4" id="payment-method" name="payment-method">
-                                        <option id="payment-1" value="">Tiền mặt</option>
-                                        <option id="payment-2" value="">Thanh toán không dùng tiền mặt</option>
-                                    </select>
-                                </div>
-                                <div class="d-flex flex-row my-2">
-                                    <p class="col-md-4 font-weight-bold">Tiền khám: </p>
-                                    <span class="col-md-8 text-center" id="medical-price"></span>
-                                </div>
-                                <div class="d-flex flex-row my-2">
-                                    <p class="col-md-4 font-weight-bold">Tiền thuốc: </p>
-                                    <span class="col-md-8 text-center" id="medicine-price"></span>
-                                </div>
-                                <div class="d-flex flex-row my-2">
-                                    <p class="col-md-4 font-weight-bold">Thuế phí (10%): </p>
-                                    <span class="col-md-8 text-center" id="tax-fee"></span>
-                                </div>
-                                <div class="d-flex flex-row my-2">
-                                    <p class="col-md-4 font-weight-bold">Tổng cộng: </p>
-                                    <input name="total-price" readonly style="color:red" id="total-price"
-                                           class="col-md-8 text-center font-weight-bold"/>
-                                </div>
-                        </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Hủy bỏ</button>
-                            <button type="submit" id="btn-checkout" class="btn btn-success">Thanh toán</button>
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label" for="createddate">Ngày chi tiền</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" id="createddate" type="date"  />
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center" class="cold-xs-12 col-md-4 m-4">
-            <a style="text-decoration: none; color: black; font-size: 18px" class="btn btn-link "
-               href="{{ url_for('payment.__index__') + '?receipt-history=1' }}">
-                <div>
-                    <i class=" fa fa-list-alt pb-3" style='font-size:80px'></i>
-                </div>
-                Xem lại giao dịch</a>
+
+                    <div class="form-group row">
+                        <label for="quantity" class="col-lg-2 col-form-label">Số lượng <span class="text-danger">(bắt buộc)</span></label>
+                        <div class="col-lg-10">
+                            <form:input type="text" path="quantity" id="quantity" class="form-control" placeholder="Nhập vào số tiền"/>
+                            <%--<form:errors path="quantity" element="div" cssClass="invalid-feedback" />--%>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="price" class="col-lg-2 col-form-label">Số tiền <span class="text-danger">(bắt buộc)</span></label>
+                        <div class="col-lg-10">
+                            <form:input type="text" path="price" id="price" class="form-control" placeholder="Nhập vào số tiền"/>
+                            <form:errors path="price" element="div" cssClass="invalid-feedback" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-lg-2 col-form-label" for="howToUse">Cách dùng <span class="text-danger">(bắt buộc)</span></label>
+                        <div class="col-lg-10">
+                            <form:textarea path ="howToUse" class="form-control" rows="5" id="howToUse"></form:textarea>
+                            <%--<form:errors path="howToUse" element="div" cssClass="invalid-feedback" />--%>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sel1" class="form-label">Danh muc</label>
+                        <%--<form:select path="medicineId" class="form-select">--%>
+                            <%--<c:forEach items="${medicalBillDetailId}" var="c">--%>
+                                <!--<option value="${c.id}">${c.medicineId}</option>-->
+                            <%--</c:forEach>--%>
+                        <%--</form:select>--%>
+                    </div>
+                    <div class="form-floating">
+                        <br>
+                        <input type="submit" value="Thêm chi tiêu" class="btn btn-danger" />
+                    </div>
+                </form:form>
+            </div> 
         </div>
     </div>
 </div>

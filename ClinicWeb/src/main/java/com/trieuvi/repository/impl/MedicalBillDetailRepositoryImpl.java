@@ -4,6 +4,7 @@
  */
 package com.trieuvi.repository.impl;
 
+import com.trieuvi.pojos.MedicalBill;
 import com.trieuvi.pojos.MedicalBillDetail;
 import com.trieuvi.repository.MedicalBillDetailRepository;
 import java.util.List;
@@ -30,6 +31,19 @@ public class MedicalBillDetailRepositoryImpl implements MedicalBillDetailReposit
         Session s = this.sessionFactory.getObject().getCurrentSession();
         Query q = s.createQuery("From MedicalBillDetail");
         return q.getResultList();
+    }
+
+    @Override
+    public boolean addMedicalBillDetail(MedicalBillDetail m) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+            
+        try {
+            session.save(m);
+            return true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
     
 }

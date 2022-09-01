@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -28,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Star
  */
 @Repository
-@PropertySource("classpath:databases.properties")
 @Transactional
 public class UserRepositoryImpl implements UserRepository{  
     @Autowired
@@ -135,6 +135,35 @@ public class UserRepositoryImpl implements UserRepository{
         
         Query query = session.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.save(user);
+            return true;
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
+        }
+        return this.userRepository.addUser(user);
+    }
+
+    @Override
+    public List<User> getusers(String username) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<User> query = b.createQuery(User.class);
+        Root root = query.from(User.class);
+        query = query.select(root); 
+        
+        if(!username.isEmpty()){
+            Predicate p1 = b.like(root.get("username").as(String.class), username.trim());
+            query =query.where(p1);
+        }
+        
+        Query q = session.createQuery(query);
+        return q.getResultList();
     }
     
 }

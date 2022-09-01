@@ -4,9 +4,11 @@
  */
 package com.trieuvi.service.impl;
 
+import com.trieuvi.pojos.MedicalBill;
 import com.trieuvi.pojos.MedicalBillDetail;
 import com.trieuvi.repository.MedicalBillDetailRepository;
 import com.trieuvi.service.MedicalBillDetailService;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,13 @@ public class MedicalBillDetailServiceImpl implements MedicalBillDetailService{
     @Override
     public List<MedicalBillDetail> getMedicalBillDetail() {
         return this.medicalBillDetailRepository.getMedicalBillDetail();
+    }
+
+    @Override
+    public boolean addMedicalBillDetail(MedicalBillDetail m) {
+        Date date = new Date();
+        m.setCreatedDate(date);
+       return this.medicalBillDetailRepository.addMedicalBillDetail(m);
     }
 
 }

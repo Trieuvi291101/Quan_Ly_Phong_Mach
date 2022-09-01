@@ -4,6 +4,7 @@
  */
 package com.trieuvi.service;
 
+import com.trieuvi.pojos.MedicalBill;
 import com.trieuvi.pojos.MedicalBillDetail;
 import java.util.List;
 
@@ -13,4 +14,5 @@ import java.util.List;
  */
 public interface MedicalBillDetailService {
     List<MedicalBillDetail> getMedicalBillDetail();
+    boolean addMedicalBillDetail(MedicalBillDetail m);
 }
