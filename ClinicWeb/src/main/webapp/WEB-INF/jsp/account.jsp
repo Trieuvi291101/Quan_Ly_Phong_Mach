@@ -14,21 +14,19 @@
     <div class="d-md-flex flex-row py-4">
         <div class="col-xs-12 col-md-7">
             <div class="px-4 pt-3">
-                <c:forEach items="${user}" var="u">
                 <p class="d-inline font-weight-bold" style="text-algin: center"> Mã số nhân viên: 
-                    <span class="font-weight-normal">${u.id}</span></p>
+                    <span class="font-weight-normal">${userId.id}</span></p>
                 <br><p class="d-inline font-weight-bold">Chức danh: 
-                    <span class="font-weight-normal">${u.userRole}</span></p>
+                    <span class="font-weight-normal">${userId.userRole}</span></p>
                 <br><p class="d-inline font-weight-bold">Họ tên: 
-                    <span class="font-weight-normal">${u.lastName} ${u.firstName}</span></p>
+                    <span class="font-weight-normal">${userId.lastName} ${userId.firstName}</span></p>
                 <br><p class="d-inline font-weight-bold">Ngày sinh: 
-                    <span id="user_age" class="font-weight-normal">${u.birthday}</span></p>
+                    <span id="user_age" class="font-weight-normal">${userId.birthday}</span></p>
                 <br><p class="d-inline font-weight-bold">Số điện thoại: 
-                    <span class="font-weight-normal">${u.phoneNumber}</span></p>
+                    <span class="font-weight-normal">${userId.phoneNumber}</span></p>
                 <br><p class="d-inline font-weight-bold">Giới tính: 
-                    <span class="font-weight-normal">${u.genderId}</span></p></br>
-                </c:forEach>
-                <a class="'d-inline" href="#" class="link-info" data-toggle="modal"
+                    <span class="font-weight-normal">${userId.genderId}</span></p></br>    
+                <a class="'d-inline" href="#" class="link-info" data-toggle="modal">
                    data-target="#exampleModal">Thay đổi thông tin</a>
                 <!-- Model -->
                 <form method="POST" action="/admin/submit-change">

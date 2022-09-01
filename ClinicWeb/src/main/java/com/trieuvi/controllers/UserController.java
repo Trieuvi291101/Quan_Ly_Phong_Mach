@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -29,7 +30,7 @@ public class UserController {
     @GetMapping("/account")
     public String list(Model model) {
          model.addAttribute("user", this.userService.getUser());
-         model.addAttribute("users", this.userService.getUser(""));
+         model.addAttribute("userId", this.userService.getUserById(1));
         
         return "account";
     }

@@ -4,16 +4,13 @@
  */
 package com.trieuvi.repository;
 
-import com.trieuvi.pojos.CustomerSche;
-import com.trieuvi.pojos.MedicalBill;
+import com.trieuvi.pojos.MedicalBillDetail;
 import java.util.List;
 
 /**
  *
  * @author Star
  */
-public interface CustomerScheRepository {
-    List<CustomerSche> getCustomerSches();
-    List<CustomerSche> getCustomerFormed();
-    List<MedicalBill> getMedicalBill();
+public interface MedicalBillDetailRepository {
+    List<MedicalBillDetail> getMedicalBillDetail();
 }

@@ -35,5 +35,20 @@ public class UserServiceImpl implements UserService{
         return this.userRepository.getUser(kw);
     }
 
+    @Override
+    public List<User> getCustomer() {
+        return this.userRepository.getCustomer();
+    }
+
+    @Override
+    public List<User> getCustomerWaiting() {
+        return this.userRepository.getCustomerWaiting();  
+    }
+
+    @Override
+    public List<User> getCustomerBykw(String kw) {
+         return this.userRepository.getCustomerBykw(kw);
+    }
+
 }
 

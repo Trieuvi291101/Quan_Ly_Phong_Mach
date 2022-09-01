@@ -28,14 +28,14 @@
                         </div>
                         <!-- Modal body -->
                         <div style="height: 300px; text-align: left" class="modal-body  ">
-                            <form action="{{ url_for('new_orderCus') }}" method="post" >
+                            <form action="" method="post" >
                                 <div class="d-flex flex-row my-4 form-group">
                                     <label class="col-md-2" for="customer-fname">Họ</label>
                                     <input class="col-md-4 text-center form-control" type="text" id="customer-fname"
-                                           name="customer-fname" placeholder="Nhập họ" autocomplete="off" required  />
+                                           name="customer-fname" placeholder="Nhập họ" required  />
                                     <label class="px-4 col-md-2" for="customer-lname">Tên</label>
                                     <input class="col-md-4 text-center form-control" type="text"
-                                           id="customer-lname" name="customer-lname" placeholder="Nhập tên" autocomplete="off" required/>
+                                           id="customer-lname" name="customer-lname" placeholder="Nhập tên" required/>
                                 </div>
                                 <div class="d-flex flex-row my-4 form-group">
                                     <label class="col-md-2" for="customer-birth">Ngày sinh</label>
@@ -196,7 +196,7 @@
 
 
 <div class="container col-md-12" style="border: 1px solid lightgray; height: 600px; margin-top: 20px">
-    <h3 class="pt-2" style="font-weight: normal">Danh sách chờ xác nhận <span class="badge badge-success">{{count_cus_wasnt_sche}}</span></h3>
+    <h3 class="pt-2" style="font-weight: normal">Danh sách chờ xác nhận</h3>
 
     <div class="container col-md-12 ">
         <div style="padding-right: 20px" class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -204,20 +204,22 @@
                 <thead >
                     <tr>
                         <th scope="col" class="text-center">Tên</th>
-                        <th scope="col" class="text-center th-sm">Tuổi</th>
+                        <th scope="col" class="text-center th-sm">Ngày sinh</th>
+                        <th scope="col" class="text-center">Giới tính</th>
                         <th scope="col" class="text-center">Số điện thoại</th>
-                        <th scope="col" class="text-center">Địa chỉ</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for p in list_wasnt_sche %}
-                    <tr class="text-center">
-                        <td >{{ p.first_name +" "+ p.last_name }}</td>
-                        <td>{{ now.year - p.birthday.year }}</td>
-                        <td>{{ p.phone_number }}</td>
-                        <td>{{ p.address_id}}</td>
-                    </tr>
-                    {% endfor %}
+                    <c:forEach var="c" items="${customerWaiting}">
+                        <c:if test= "${c[6] == false}">
+                            <tr class="text-center">
+                                <td >${c[1]} ${c[2]}</td>
+                                <td>${c[3]}</td>
+                                <td>${c[4]}</td>
+                                <td>${c[5]}</td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>

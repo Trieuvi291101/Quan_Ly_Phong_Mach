@@ -47,7 +47,7 @@ public class StatsRepositoryImpl implements StatsRepository{
         
         q.multiselect(b.function("MONTH", Integer.class, rP.get("createdDate")),
                 b.function("YEAR", Integer.class, rP.get("createdDate")),
-                b.sum(b.prod(rP.get("quantity"), rP.get("totalPrice"))));
+                b.sum(b.prod(rP.get("quantity"), rP.get("price"))));
         
         if(fromDate !=null)
             predicates.add(b.greaterThan(rP.get("createdDate"), fromDate));

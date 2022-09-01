@@ -31,13 +31,13 @@
         <li><a class="nav-link" href="<c:url value="/customerSche" />">Lịch khám</a></li>
     </ul>
     <ul class="navbar-nav">
-        <li><a class="nav-link" href="">Lập phiếu khám</a></li>
+        <li><a class="nav-link" href="<c:url value="/createMedicalBill" />">Lập phiếu khám</a></li>
     </ul>
     <ul class="navbar-nav">
-        <li><a class="nav-link" href="">Thanh toán</a></li>
+        <li><a class="nav-link" href="<c:url value="/payment" />">Thanh toán</a></li>
     </ul>
     <ul class="navbar-nav">
-        <li><a class="nav-link" href="">Quản lý</a></li>
+        <li><a class="nav-link" href="<c:url value="/management" />">Quản lý</a></li>
     </ul>
     <ul class="navbar-nav">
         <li><a class="nav-link" href="<c:url value="/regulation" />">Quy định</a></li>

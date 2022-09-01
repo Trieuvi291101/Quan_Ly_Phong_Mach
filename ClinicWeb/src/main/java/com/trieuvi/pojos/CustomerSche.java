@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CustomerSche.findAll", query = "SELECT c FROM CustomerSche c"),
     @NamedQuery(name = "CustomerSche.findById", query = "SELECT c FROM CustomerSche c WHERE c.id = :id"),
     @NamedQuery(name = "CustomerSche.findBySchedule", query = "SELECT c FROM CustomerSche c WHERE c.schedule = :schedule"),
-    @NamedQuery(name = "CustomerSche.findByFomredSche", query = "SELECT c FROM CustomerSche c WHERE c.fomredSche = :fomredSche"),
+    @NamedQuery(name = "CustomerSche.findByFormedSche", query = "SELECT c FROM CustomerSche c WHERE c.formedSche = :formedSche"),
     @NamedQuery(name = "CustomerSche.findByExamined", query = "SELECT c FROM CustomerSche c WHERE c.examined = :examined"),
     @NamedQuery(name = "CustomerSche.findByTimeExamined", query = "SELECT c FROM CustomerSche c WHERE c.timeExamined = :timeExamined")})
 public class CustomerSche implements Serializable {
@@ -50,8 +50,8 @@ public class CustomerSche implements Serializable {
     @Column(name = "schedule")
     @Temporal(TemporalType.DATE)
     private Date schedule;
-    @Column(name = "fomred_sche")
-    private Boolean fomredSche;
+    @Column(name = "formed_sche")
+    private Boolean formedSche;
     @Column(name = "examined")
     private Boolean examined;
     @Column(name = "time_examined")
@@ -86,12 +86,12 @@ public class CustomerSche implements Serializable {
         this.schedule = schedule;
     }
 
-    public Boolean getFomredSche() {
-        return fomredSche;
+    public Boolean getFormedSche() {
+        return formedSche;
     }
 
-    public void setFomredSche(Boolean fomredSche) {
-        this.fomredSche = fomredSche;
+    public void setFormedSche(Boolean formedSche) {
+        this.formedSche = formedSche;
     }
 
     public Boolean getExamined() {

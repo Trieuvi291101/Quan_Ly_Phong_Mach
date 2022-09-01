@@ -30,5 +30,10 @@ public class CustomerScheServiceImpl implements CustomerScheService{
     public List<MedicalBill> getMedicalBill() {
         return this.customerScheRepository.getMedicalBill();
     }
+
+    @Override
+    public List<CustomerSche> getCustomerFormed() {
+        return this.customerScheRepository.getCustomerFormed();
+    }
     
 }

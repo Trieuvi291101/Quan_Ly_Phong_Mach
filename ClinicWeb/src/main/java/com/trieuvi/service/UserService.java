@@ -13,6 +13,9 @@ import java.util.List;
  */
 public interface UserService {  
     User getUserById(int id);
+    List<User> getCustomer();
     List<User> getUser();
+    List<User> getCustomerBykw(String kw);
     List<User> getUser(String kw);
+    List<User> getCustomerWaiting();
 }

@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -19,24 +17,20 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Star
  */
 @Controller
-public class CustomerScheController {
-
+public class CreateMedicalBillController {
     @Autowired
     private CustomerScheService customerScheService;
 
     @Autowired
     private UserService userService;
-
-    @GetMapping("/customerSche")
-    public String list(Model model,@RequestParam(value = "kw", required = false, defaultValue = "") String kw) {
+    
+    @GetMapping("/createMedicalBill")
+    public String list(Model model, @RequestParam(value = "kw", required = false, defaultValue = "") String kw) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
         model.addAttribute("user", this.userService.getUser());
         model.addAttribute("users", this.userService.getUser(kw));
-        model.addAttribute("medicalBill", this.customerScheService.getMedicalBill());
-        model.addAttribute("customer", this.userService.getCustomer());
-        model.addAttribute("customerFormed", this.customerScheService.getCustomerFormed());
+        model.addAttribute("customers", this.userService.getCustomerBykw(kw));
 
-        return "customerSche";
+        return "createMedicalBill";
     }
-
 }

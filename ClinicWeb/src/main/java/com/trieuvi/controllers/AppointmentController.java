@@ -26,10 +26,10 @@ public class AppointmentController {
     private UserService userService;
 
     @GetMapping("/appointment")
-    public String list(Model model, @RequestParam(value = "kw", required = false, defaultValue = "") String kw) {
+    public String list(Model model) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
         model.addAttribute("user", this.userService.getUser());
-        model.addAttribute("users", this.userService.getUser(kw));
+        model.addAttribute("customerWaiting", this.userService.getCustomerWaiting());
 
         return "appointment";
     }

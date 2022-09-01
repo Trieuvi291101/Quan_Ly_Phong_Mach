@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "MedicalBillDetail.findById", query = "SELECT m FROM MedicalBillDetail m WHERE m.id = :id"),
     @NamedQuery(name = "MedicalBillDetail.findByQuantity", query = "SELECT m FROM MedicalBillDetail m WHERE m.quantity = :quantity"),
     @NamedQuery(name = "MedicalBillDetail.findByHowToUse", query = "SELECT m FROM MedicalBillDetail m WHERE m.howToUse = :howToUse"),
-    @NamedQuery(name = "MedicalBillDetail.findByTotalPrice", query = "SELECT m FROM MedicalBillDetail m WHERE m.totalPrice = :totalPrice"),
+    @NamedQuery(name = "MedicalBillDetail.findByPrice", query = "SELECT m FROM MedicalBillDetail m WHERE m.price = :price"),
     @NamedQuery(name = "MedicalBillDetail.findByCreatedDate", query = "SELECT m FROM MedicalBillDetail m WHERE m.createdDate = :createdDate")})
 public class MedicalBillDetail implements Serializable {
 
@@ -49,8 +49,8 @@ public class MedicalBillDetail implements Serializable {
     @Column(name = "how_to_use")
     private String howToUse;
     @Size(max = 45)
-    @Column(name = "total_price")
-    private String totalPrice;
+    @Column(name = "price")
+    private String price;
     @Column(name = "created_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
@@ -98,12 +98,12 @@ public class MedicalBillDetail implements Serializable {
         this.howToUse = howToUse;
     }
 
-    public String getTotalPrice() {
-        return totalPrice;
+    public String getPrice() {
+        return price;
     }
 
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setPrice(String price) {
+        this.price = price;
     }
 
     public Date getCreatedDate() {
