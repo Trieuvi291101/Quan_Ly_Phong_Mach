@@ -29,7 +29,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
     "com.trieuvi.controllers",
     "com.trieuvi.repository",
     "com.trieuvi.pojos",
-    "com.trieuvi.service"
+    "com.trieuvi.service",
+    "com.dht.handlers"
 })
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -57,8 +58,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 //                        "secure", true));
 //        return cloudinary;
 //    }
-    
-    
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -74,16 +73,15 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling().accessDeniedPage("/login?accessDenied");
 
         http.authorizeRequests().antMatchers("/").permitAll()
-                .antMatchers("/appointment").access("hasRole('NURSE')")
-//                .antMatchers("/createMedicalBill").access("hasRole('DOCTOR')")
-//                .antMatchers("/**/management").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
-//                .antMatchers("/**/regulation").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
-//                .antMatchers("/stats").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
-//                .antMatchers("/customerSche").access("hasAnyRole('NURSE', 'DOCTOR')")
-//                .antMatchers("/payment").access("hasAnyRole('NURSE', 'DOCTOR')")
-//                .antMatchers("/regulation").access("hasRole('SUPERADMIN')")
+//                .antMatchers("/appointment").access("hasRole('NURSE')") //                .antMatchers("/createMedicalBill").access("hasRole('DOCTOR')")
+                //                .antMatchers("/**/management").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
+                //                .antMatchers("/**/regulation").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
+                //                .antMatchers("/stats").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
+                //                .antMatchers("/customerSche").access("hasAnyRole('NURSE', 'DOCTOR')")
+                //                .antMatchers("/payment").access("hasAnyRole('NURSE', 'DOCTOR')")
+                //                .antMatchers("/regulation").access("hasRole('SUPERADMIN')")
                 ;
-                
+
         http.csrf().disable();
 
     }

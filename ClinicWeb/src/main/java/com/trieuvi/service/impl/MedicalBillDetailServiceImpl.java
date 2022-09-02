@@ -31,7 +31,13 @@ public class MedicalBillDetailServiceImpl implements MedicalBillDetailService{
     public boolean addMedicalBillDetail(MedicalBillDetail m) {
         Date date = new Date();
         m.setCreatedDate(date);
+        
        return this.medicalBillDetailRepository.addMedicalBillDetail(m);
+    }
+
+    @Override
+    public boolean addMedicalBill(MedicalBill mb) {
+        return this.medicalBillDetailRepository.addMedicalBill(mb);
     }
 
 }

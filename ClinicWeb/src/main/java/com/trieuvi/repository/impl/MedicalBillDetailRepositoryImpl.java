@@ -9,6 +9,7 @@ import com.trieuvi.pojos.MedicalBillDetail;
 import com.trieuvi.repository.MedicalBillDetailRepository;
 import java.util.List;
 import javax.persistence.Query;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -26,6 +27,9 @@ public class MedicalBillDetailRepositoryImpl implements MedicalBillDetailReposit
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
     
+    @Autowired
+    private MedicalBillDetailRepository medicalBillDetailRepository;
+    
     @Override
     public List<MedicalBillDetail> getMedicalBillDetail() {
         Session s = this.sessionFactory.getObject().getCurrentSession();
@@ -36,14 +40,25 @@ public class MedicalBillDetailRepositoryImpl implements MedicalBillDetailReposit
     @Override
     public boolean addMedicalBillDetail(MedicalBillDetail m) {
         Session session = this.sessionFactory.getObject().getCurrentSession();
-            
-        try {
+        try{
             session.save(m);
             return true;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return false;
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
+        } 
+        return false;
+    }
+
+    @Override
+    public boolean addMedicalBill(MedicalBill m) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.save(m);
+            return true;
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
         }
+        return this.medicalBillDetailRepository.addMedicalBill(m);
     }
     
 }

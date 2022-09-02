@@ -6,9 +6,6 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix = "fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark  fixed-top justify-content-md-center">
@@ -30,11 +27,9 @@
             <li><a class="nav-link" href="">Giao dịch</a></li>
         </ul>
     </sec:authorize>
-    <sec:authorize access="hasRole('NURSE')">
-        <ul class="navbar-nav">
-            <li><a class="nav-link" href="<c:url value="/appointment" />">Đặt hẹn</a></li>
-        </ul>
-    </sec:authorize>
+    <ul class="navbar-nav">
+        <li><a class="nav-link" href="<c:url value="/appointment" />">Đặt hẹn</a></li>
+    </ul>
     <ul class="navbar-nav">
         <li><a class="nav-link" href="<c:url value="/customerSche" />">Lịch khám</a></li>
     </ul>
@@ -44,7 +39,7 @@
     <ul class="navbar-nav">
         <li><a class="nav-link" href="<c:url value="/payment" />">Thanh toán</a></li>
     </ul>
-    <sec:authorize access="hasRole('SUPERADMIN')">
+    <sec:authorize access="hasRole('DOCTOR')">
         <ul class="navbar-nav">
             <li><a class="nav-link" href="<c:url value="/management" />">Quản lý</a></li>
         </ul>

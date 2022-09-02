@@ -65,7 +65,6 @@ public class User implements Serializable {
     @Size(max = 50)
     @Column(name = "last_name")
     private String lastName;
-    @Basic(optional = false)
     @Column(name = "birthday")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
@@ -123,10 +122,9 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String firstName, Date birthday, String phoneNumber, String username, String password, String userRole) {
+    public User(Integer id, String firstName, String phoneNumber, String username, String password, String userRole) {
         this.id = id;
         this.firstName = firstName;
-        this.birthday = birthday;
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;

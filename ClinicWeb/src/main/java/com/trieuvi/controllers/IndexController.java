@@ -5,10 +5,13 @@
 package com.trieuvi.controllers;
 
 import com.trieuvi.service.CustomerScheService;
+import com.trieuvi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -16,9 +19,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Star
  */
 @Controller
+@ControllerAdvice
 public class IndexController {
     @Autowired
     private CustomerScheService customerScheService;
+    
+    @Autowired
+    private UserService userService;
+    
+    @ModelAttribute
+    public void commonAttr(Model model) {
+         model.addAttribute("userAttr", this.userService.getUser());
+         model.addAttribute("customerAttr", this.userService.getCustomers());
+    } 
             
     @RequestMapping("/")
     public String index(Model model) {

@@ -8,7 +8,9 @@ import com.trieuvi.pojos.CustomerSche;
 import com.trieuvi.pojos.MedicalBill;
 import com.trieuvi.repository.CustomerScheRepository;
 import com.trieuvi.service.CustomerScheService;
+import java.util.Date;
 import java.util.List;
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 public class CustomerScheServiceImpl implements CustomerScheService{
     @Autowired
     private CustomerScheRepository customerScheRepository;
+    
 
     @Override
     public List<CustomerSche> getCustomerSches() {
@@ -34,6 +37,19 @@ public class CustomerScheServiceImpl implements CustomerScheService{
     @Override
     public List<CustomerSche> getCustomerFormed() {
         return this.customerScheRepository.getCustomerFormed();
+    }
+
+    @Override
+    public boolean addCustomerSche(CustomerSche cus) {
+        try{
+            cus.setFormedSche(true);
+            Date date = new Date();
+            cus.setSchedule(date);
+            return this.customerScheRepository.addCustomerSche(cus);
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
+        }
+        return this.customerScheRepository.addCustomerSche(cus);
     }
     
 }

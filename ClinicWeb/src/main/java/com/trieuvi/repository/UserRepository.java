@@ -19,5 +19,6 @@ public interface UserRepository {
     List<User> getUser(String kw);
     List<User> getCustomerBykw(String kw);
     List<User> getCustomer();
+    List<User> getCustomers();
     List<User> getCustomerWaiting();
 }

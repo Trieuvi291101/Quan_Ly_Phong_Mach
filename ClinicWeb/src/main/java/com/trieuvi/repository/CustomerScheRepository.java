@@ -16,4 +16,5 @@ public interface CustomerScheRepository {
     List<CustomerSche> getCustomerSches();
     List<CustomerSche> getCustomerFormed();
     List<MedicalBill> getMedicalBill();
+    boolean addCustomerSche(CustomerSche cus);
 }

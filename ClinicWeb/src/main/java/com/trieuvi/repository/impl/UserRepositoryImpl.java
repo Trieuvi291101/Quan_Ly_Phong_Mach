@@ -166,4 +166,22 @@ public class UserRepositoryImpl implements UserRepository{
         return q.getResultList();
     }
     
+    @Override
+    public List<User> getCustomers() {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<Object[]> q = b.createQuery(Object[].class);
+        
+        Root root = q.from(User.class);
+        Root root1 = q.from(CustomerSche.class);
+        
+        q = q.where(b.equal(root.get("id"), root1.get("customerId")));
+        q.multiselect(root.get("id"), root.get("lastName"), root.get("firstName"),root.get("birthday"),root.get("phoneNumber"),
+                root1.get("schedule"));
+        q.groupBy(root.get("id"));
+        
+        Query query = session.createQuery(q);
+        return query.getResultList();
+    }
+    
 }

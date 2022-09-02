@@ -4,11 +4,13 @@
  */
 package com.trieuvi.configs;
 
+import com.trieuvi.formatter.UserFormatter;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -30,7 +32,8 @@ import org.springframework.web.servlet.view.JstlView;
     "com.trieuvi.controllers",
     "com.trieuvi.pojos",
     "com.trieuvi.repository",
-    "com.trieuvi.service"
+    "com.trieuvi.service",
+    "com.dht.handlers"
 })
 public class WebApplicationContextConfig implements WebMvcConfigurer {
     @Override
@@ -54,6 +57,11 @@ public class WebApplicationContextConfig implements WebMvcConfigurer {
 //        
 //        return r;
 //    }
+    
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addFormatter(new UserFormatter());
+    }
     
     @Override
     public Validator getValidator() {

@@ -15,4 +15,5 @@ import java.util.List;
 public interface MedicalBillDetailService {
     List<MedicalBillDetail> getMedicalBillDetail();
     boolean addMedicalBillDetail(MedicalBillDetail m);
+    boolean addMedicalBill(MedicalBill m);
 }

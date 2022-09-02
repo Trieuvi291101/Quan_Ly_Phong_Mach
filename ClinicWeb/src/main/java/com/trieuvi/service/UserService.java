@@ -21,4 +21,5 @@ public interface UserService extends UserDetailsService{
     List<User> getCustomerBykw(String kw);
     List<User> getUser(String kw);
     List<User> getCustomerWaiting();
+    List<User> getCustomers();
 }

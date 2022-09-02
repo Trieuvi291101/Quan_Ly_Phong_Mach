@@ -16,12 +16,11 @@
                 <h4 class="m-t-0 header-title mb-4"><b>Thêm phiếu thu</b></h4>
                 <c:url value="/payment" var="action" />
                 <form:form class="form-horizontal" method="post" action="${action}" modelAttribute="medicalBillDetail">
-                    <%--<form:errors path="*" element="div" cssClass="alert alert-danger" />--%>
 
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label" for="createddate">Ngày chi tiền</label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="createddate" type="date"  />
+                            <input class="form-control" id="createddate" type="date" />
                         </div>
                     </div>
 
@@ -29,7 +28,6 @@
                         <label for="quantity" class="col-lg-2 col-form-label">Số lượng <span class="text-danger">(bắt buộc)</span></label>
                         <div class="col-lg-10">
                             <form:input type="text" path="quantity" id="quantity" class="form-control" placeholder="Nhập vào số tiền"/>
-                            <%--<form:errors path="quantity" element="div" cssClass="invalid-feedback" />--%>
                         </div>
                     </div>
 
@@ -37,7 +35,6 @@
                         <label for="price" class="col-lg-2 col-form-label">Số tiền <span class="text-danger">(bắt buộc)</span></label>
                         <div class="col-lg-10">
                             <form:input type="text" path="price" id="price" class="form-control" placeholder="Nhập vào số tiền"/>
-                            <form:errors path="price" element="div" cssClass="invalid-feedback" />
                         </div>
                     </div>
 
@@ -45,7 +42,6 @@
                         <label class="col-lg-2 col-form-label" for="howToUse">Cách dùng <span class="text-danger">(bắt buộc)</span></label>
                         <div class="col-lg-10">
                             <form:textarea path ="howToUse" class="form-control" rows="5" id="howToUse"></form:textarea>
-                            <%--<form:errors path="howToUse" element="div" cssClass="invalid-feedback" />--%>
                         </div>
                     </div>
 

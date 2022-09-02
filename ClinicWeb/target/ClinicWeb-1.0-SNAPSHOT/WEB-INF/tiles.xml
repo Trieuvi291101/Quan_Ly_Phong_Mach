@@ -69,4 +69,9 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/register.jsp" />
     </definition>
+    <definition name="formAppointment" extends="baseLayout">
+        <put-attribute name="title" value="Đặt hẹn tại quầy" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/formAppointment.jsp" />
+    </definition>
 </tiles-definitions>

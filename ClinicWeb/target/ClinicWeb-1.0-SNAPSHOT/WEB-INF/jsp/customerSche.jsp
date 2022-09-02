@@ -9,19 +9,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link href="resources/css/admin-style.css" rel="stylesheet">
 <div style="margin-top: 60px;">
-    <script>
-        //Thống kê bệnh nhân
-        let labels_patient = ['Đã khám', 'Chưa khám']
-                let data_patient = []
-        { % if patient_stats % }
-        data_patient.push({{ patient_stats[1] }})
-                data_patient.push({{ patient_stats[2] }})
-        { % endif % }
-        window.onload = function() {
-        const ctxPatient = document.getElementById('PatientChart').getContext('2d');
-        loadChart(ctxPatient, labels_patient, data_patient, 'pie', 'Số bệnh nhân hôm nay');
-        }
-    </script>
     <div class="container mb-2 pb-5" style="border: 1px solid lightgray">
         <h3 class="pt-3" style="font-weight: normal">Thông tin tổng quan</h3>
         <div class="d-md-flex flex-row py-4">

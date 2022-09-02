@@ -14,6 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class CustomerScheRepositoryimpl implements CustomerScheRepository{
     @Autowired
     private LocalSessionFactoryBean sessionFactory;
+    
+    private CustomerScheRepository CustomerScheRepository;
     
     @Override
     public List<CustomerSche> getCustomerSches(){
@@ -59,5 +62,17 @@ public class CustomerScheRepositoryimpl implements CustomerScheRepository{
         
         Query query = session.createQuery(q);
         return query.getResultList();
+    }
+
+    @Override
+    public boolean addCustomerSche(CustomerSche cus) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        try{
+            session.save(cus);
+            return true;
+        }catch(HibernateException ex){
+            System.err.println(ex.getMessage());
+        }
+        return this.CustomerScheRepository.addCustomerSche(cus);
     }
 }

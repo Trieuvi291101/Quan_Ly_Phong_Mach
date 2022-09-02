@@ -25,6 +25,7 @@ public class UserController {
     @Autowired
     private UserService userDetailsService;
     
+    
 //    
 //    @GetMapping("/account")
 //    public String productDetails(Model model, @PathVariable(value = "id") int id) {

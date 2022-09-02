@@ -10,9 +10,6 @@
 
     <div id="home" class="bgFirst background-below-text opacity-filter" style="margin-top: 60px">
         <span id="first-landing">
-            <sec:authorize access="hasRole('SUPERADMIN')">
-               <a class="nav-link" href="<c:url value="/regulation" />">Quy định</a>
-            </sec:authorize>
             <strong>Phòng mạch ViVi</strong></br>
             <span><i>Tận tụy - Tận tâm - Đảm bảo</i></span>
             <p> Được xây dựng và hoạt động trong hơn 15 năm, Phòng mạch ViVi chính là một địa điểm
