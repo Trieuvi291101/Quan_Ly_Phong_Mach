@@ -19,10 +19,10 @@ import org.springframework.stereotype.Service;
  * @author Star
  */
 @Service
-public class CustomerScheServiceImpl implements CustomerScheService{
+public class CustomerScheServiceImpl implements CustomerScheService {
+
     @Autowired
     private CustomerScheRepository customerScheRepository;
-    
 
     @Override
     public List<CustomerSche> getCustomerSches() {
@@ -41,15 +41,11 @@ public class CustomerScheServiceImpl implements CustomerScheService{
 
     @Override
     public boolean addCustomerSche(CustomerSche cus) {
-        try{
-            cus.setFormedSche(true);
-            Date date = new Date();
-            cus.setSchedule(date);
-            return this.customerScheRepository.addCustomerSche(cus);
-        }catch(HibernateException ex){
-            System.err.println(ex.getMessage());
-        }
+        cus.setFormedSche(true);
+        Date date = new Date();
+        cus.setSchedule(date);
+
         return this.customerScheRepository.addCustomerSche(cus);
     }
-    
+
 }

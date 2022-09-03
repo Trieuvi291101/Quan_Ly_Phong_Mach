@@ -12,6 +12,7 @@ import com.trieuvi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Star
  */
 @Controller
+@ControllerAdvice
 public class CreateMedicalBillController {
     @Autowired
     private CustomerScheService customerScheService;
@@ -46,18 +48,12 @@ public class CreateMedicalBillController {
     
     
     @PostMapping("/createMedicalBill")
-    public String createMedicalBill(Model model, @ModelAttribute(value = "medicalBill") MedicalBill m, @ModelAttribute(value = "medicalBillDetail") MedicalBillDetail mb){
+    public String createMedicalBill(Model model, @ModelAttribute(value = "medicalBill") MedicalBill m){
         String errMsg = "";
             if(this.medicalBillDetailService.addMedicalBill(m) == true){
                 return "redirect:/payment";
             }else
                 errMsg = "Đa xay ra loi!!!";
-            
-            if(this.medicalBillDetailService.addMedicalBillDetail(mb) == true){
-                return "redirect:/payment";
-            }else
-                errMsg = "Đa xay ra loi!!!";
-        
         
         model.addAttribute("errMsg", errMsg);
         

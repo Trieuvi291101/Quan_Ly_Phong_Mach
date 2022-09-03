@@ -21,4 +21,5 @@ public interface UserRepository {
     List<User> getCustomer();
     List<User> getCustomers();
     List<User> getCustomerWaiting();
+    User getUserByUsername(String username);
 }

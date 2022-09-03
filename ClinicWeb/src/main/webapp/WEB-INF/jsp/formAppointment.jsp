@@ -19,9 +19,9 @@
     </c:if>
     <c:url value="/formAppointment" var="action"/>
     <form:form action="${action}" modelAttribute="customerSche" method="post">
-        <div class="d-flex flex-row my-3" style="padding: 30px">
+<!--        <div class="d-flex flex-row my-3" style="padding: 30px">
             <label class="col-md-3" for="customerId">Tên khách hàng:</label>
-            <form:select path="CustomerId" class="form-select">
+            <form:select path="customerId" class="form-select">
                 <c:forEach items="${customerAttr}" var="c">
                     <option value="${c[0]}">${c[1]} ${c[2]}</option>
                 </c:forEach>
@@ -29,20 +29,24 @@
         </div>
         <div class="d-flex flex-row my-3" style="padding: 30px">
             <label class="col-md-3" for="customerId">Số điện thoại khách hàng:</label>
-            <form:select path="CustomerId" class="form-select">
+            <form:select path="customerId" class="form-select">
                 <c:forEach items="${customerAttr}" var="c">
                     <option value="${c[0]}">${c[4]}</option>
                 </c:forEach>
             </form:select> 
+        </div>-->
+        <div class="d-flex flex-row my-3">
+            <label class="col-md-3" for="schedule">ID khách hàng:</label>
+            <form:input class="col-md-9" type="text" id="schedule" path="customerId" />
         </div>
         <div class="d-flex flex-row my-3">
             <label class="col-md-3" for="schedule">Hẹn vào:</label>
             <form:input class="col-md-9" type="date" id="schedule" path="schedule" />
         </div>
-        <div class="d-flex flex-row my-3">
+<!--        <div class="d-flex flex-row my-3">
             <label class="col-md-3" for="formedSche">Đặt hẹn:</label>
             <form:input class="col-md-9" type="text" value="true" id="formedSche" path="formedSche" />
-        </div>
+        </div>-->
         <span class="badge badge-danger col-md-12 ml-2" id="alert-for-order-date"></span>
 
         <div class="modal-footer">

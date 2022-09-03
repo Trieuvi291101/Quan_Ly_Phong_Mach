@@ -32,7 +32,7 @@ public class AppointmentController {
 
     @Autowired
     private UserService userService;
-    
+
     @GetMapping("/appointment")
     public String list(Model model) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
@@ -41,7 +41,7 @@ public class AppointmentController {
 
         return "appointment";
     }
-    
+
     @GetMapping("/formAppointment")
     public String list1(Model model) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
@@ -51,16 +51,17 @@ public class AppointmentController {
 
         return "formAppointment";
     }
-    
+
     @PostMapping("/formAppointment")
-    public String formAppointment(@ModelAttribute(value = "customerSche") CustomerSche cus, BindingResult r){
-        if (r.hasErrors()) {
-            return "formAppointment";
-        }
-        
-        if (this.customerScheService.addCustomerSche(cus) == true)
+    public String formAppointment(Model model, @ModelAttribute(value = "customerSche") CustomerSche cus) {
+        String errMsg = "";
+        if (this.customerScheService.addCustomerSche(cus) == true) {
             return "redirect:/appointment";
-        
+        } else {
+            errMsg = "Đa xay ra loi!!!";
+        }
+
+        model.addAttribute("errMsg", errMsg);
         return "formAppointment";
     }
 

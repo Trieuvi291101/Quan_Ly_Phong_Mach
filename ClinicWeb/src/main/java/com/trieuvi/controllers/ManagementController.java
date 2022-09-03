@@ -7,6 +7,7 @@ package com.trieuvi.controllers;
 import com.trieuvi.pojos.Medicine;
 import com.trieuvi.service.CustomerScheService;
 import com.trieuvi.service.ManagementService;
+import com.trieuvi.service.UserService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -31,11 +33,16 @@ public class ManagementController {
     
     @Autowired
     private ManagementService managementService;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/management")
-    public String list(Model model) {
+    public String list(Model model, @RequestParam(value = "kw", required = false, defaultValue = "") String kw, @RequestParam(value = "kw1", required = false, defaultValue = "") String kw1) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
         model.addAttribute("medicalBill", this.customerScheService.getMedicalBill());
+        model.addAttribute("medicine", this.managementService.getMedicine(kw));
+        model.addAttribute("users", this.userService.getUser(kw1));
 
         return "management";
     }

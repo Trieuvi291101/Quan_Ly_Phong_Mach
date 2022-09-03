@@ -11,6 +11,7 @@ com.trieuvi.controllers.RegulationController=org.springframework.stereotype.Comp
 com.trieuvi.controllers.StatsController=org.springframework.stereotype.Component
 com.trieuvi.controllers.UserController=org.springframework.stereotype.Component
 com.trieuvi.controllers.paymentController=org.springframework.stereotype.Component
+com.trieuvi.handlers.LoginHandler=org.springframework.stereotype.Component
 com.trieuvi.pojos.CustomerSche=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries
 com.trieuvi.pojos.CustomerSche_=javax.annotation.Generated,javax.persistence.metamodel.StaticMetamodel
 com.trieuvi.pojos.MedicalBill=javax.persistence.Entity,javax.persistence.Table,javax.xml.bind.annotation.XmlRootElement,javax.persistence.NamedQueries

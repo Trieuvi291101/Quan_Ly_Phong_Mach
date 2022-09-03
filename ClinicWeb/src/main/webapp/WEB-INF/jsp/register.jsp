@@ -1,4 +1,4 @@
-<%-- 
+u<%-- 
     Document   : register
     Created on : Sep 1, 2022, 8:40:46 PM
     Author     : Star
@@ -17,7 +17,7 @@
         </div>
     </c:if>
     <c:url value="/register" var="action"/>
-    <form:form method="post" action="${action}" modelAttribute="user">
+    <form:form method="post" action="${action}" enctype="multipart/form-data" modelAttribute="user">
         <div class="form-group">
             <label for="firstName">Firstname:</label>
             <form:input type="text" id="firstName" path="firstName" class="form-control"/>
@@ -35,6 +35,10 @@
             <form:input type="text" id="genderId" path="genderId" class="form-control"/>
         </div>
         <div class="form-group">
+            <label for="password">Avatar:</label>
+            <form:input type="file" id="avata" path="file" class="form-control"/>
+        </div>
+        <div class="form-group">
             <label for="username">Username:</label>
             <form:input type="text" id="username" path="username" class="form-control"/>
         </div>
@@ -46,7 +50,7 @@
             <label for="confirm-password">Confirm Password:</label>
             <form:input type="password" id="confirm-password" path="confirmPassword" class="form-control"/>
         </div>
-        <div class="form-group text-center">
+        <div class="form-group text-center" style="padding: 20px">
             <input type="submit" value="ĐĂNG KÝ" class="btn btn-danger"/>
         </div>
     </form:form>

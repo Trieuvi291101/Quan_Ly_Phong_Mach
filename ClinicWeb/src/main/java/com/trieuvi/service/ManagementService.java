@@ -5,6 +5,7 @@
 package com.trieuvi.service;
 
 import com.trieuvi.pojos.Medicine;
+import java.util.List;
 
 /**
  *
@@ -13,4 +14,5 @@ import com.trieuvi.pojos.Medicine;
 public interface ManagementService {
     boolean addMedicine(Medicine p);
     boolean deleteMedicine(int id);
+     List<Medicine> getMedicine(String kw);
 }

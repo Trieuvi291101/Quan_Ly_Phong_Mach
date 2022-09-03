@@ -9,7 +9,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div style="margin-top: 60px">
+<div style="margin-top: 60px; padding: 20px">
     <h1 class="text-center text-danger">Đăng nhập</h1>
     <c:if test="${param.error != null}">
         <div class="alert alert-danger">
@@ -31,8 +31,8 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" class="form-control"/>
         </div>
-        <div class="form-group text-center">
-            <input type="submit" value="DANG NHAP" class="btn btn-danger"/>
+        <div class="form-group text-center" style="padding: 20px">
+            <input type="submit" value="ĐĂNG NHẬP" class="btn btn-danger"/>
         </div>
     </form>
 </div>

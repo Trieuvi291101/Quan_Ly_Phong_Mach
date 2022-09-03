@@ -26,6 +26,7 @@ com\trieuvi\controllers\CreateMedicalBillController.class
 com\trieuvi\service\impl\RegulationServiceImpl.class
 com\trieuvi\configs\HibernateConfig.class
 com\trieuvi\pojos\User_.class
+com\trieuvi\formatter\UserFormatter.class
 com\trieuvi\service\UserService.class
 com\trieuvi\service\impl\ManagementServiceImpl.class
 com\trieuvi\service\impl\CustomerScheServiceImpl.class
@@ -37,6 +38,7 @@ com\trieuvi\pojos\Regulation_.class
 com\trieuvi\controllers\StatsController.class
 com\trieuvi\repository\impl\UserRepositoryImpl.class
 com\trieuvi\repository\UserRepository.class
+com\trieuvi\handlers\LoginHandler.class
 com\trieuvi\pojos\Medicine.class
 com\trieuvi\controllers\ManagementController.class
 com\trieuvi\controllers\CustomerScheController.class

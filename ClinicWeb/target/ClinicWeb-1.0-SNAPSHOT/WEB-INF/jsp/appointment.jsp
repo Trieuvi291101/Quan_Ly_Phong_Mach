@@ -29,7 +29,7 @@
                 Xem Lịch Hẹn</a>
         </div>
         <div style="text-align: center" class="cold-xs-12 col-md-4 m-4">
-            <a target="_self" href="<c:url value="/customerSche" />" data-toggle="modal" data-target="#Xemlichhen"
+            <a target="_self" href="<c:url value="/payment" />" data-toggle="modal" data-target="#Xemlichhen"
                style="text-decoration: none; color: black; font-size: 18px; padding: 20px" class="btn btn-link bg-secondary text-light" >
                 <div>
                     <i class=" fa fa-list-alt pb-5" style='font-size:80px'></i>

@@ -7,6 +7,7 @@ package com.trieuvi.service.impl;
 import com.trieuvi.pojos.Medicine;
 import com.trieuvi.repository.ManagementRepository;
 import com.trieuvi.service.ManagementService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,11 @@ public class ManagementServiceImpl implements ManagementService{
     @Override
     public boolean deleteMedicine(int id) {
          return this.managementRepository.deleteMedicine(id);
+    }
+
+    @Override
+    public List<Medicine> getMedicine(String kw) {
+        return this.managementRepository.getMedicine(kw);
     }
     
 }

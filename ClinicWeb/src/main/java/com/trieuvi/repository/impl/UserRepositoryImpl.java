@@ -184,4 +184,18 @@ public class UserRepositoryImpl implements UserRepository{
         return query.getResultList();
     }
     
+    @Override
+    public User getUserByUsername(String username) {
+        Session session = this.sessionFactory.getObject().getCurrentSession();
+        CriteriaBuilder b = session.getCriteriaBuilder();
+        CriteriaQuery<User> q = b.createQuery(User.class);
+        Root root = q.from(User.class);
+        q.select(root);
+        
+        q.where(b.equal(root.get("username"), username));
+        
+        org.hibernate.query.Query query = session.createQuery(q);
+        return (User) query.getSingleResult();
+    }
+    
 }

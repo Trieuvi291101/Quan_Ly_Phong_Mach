@@ -6,6 +6,7 @@ package com.trieuvi.controllers;
 
 import com.trieuvi.service.CustomerScheService;
 import com.trieuvi.service.UserService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,9 +29,10 @@ public class IndexController {
     private UserService userService;
     
     @ModelAttribute
-    public void commonAttr(Model model) {
+    public void commonAttr(Model model, HttpSession session) {
          model.addAttribute("userAttr", this.userService.getUser());
          model.addAttribute("customerAttr", this.userService.getCustomers());
+         model.addAttribute("currentUser", session.getAttribute("currentUser"));
     } 
             
     @RequestMapping("/")

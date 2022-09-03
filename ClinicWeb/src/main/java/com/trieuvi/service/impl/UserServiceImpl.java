@@ -4,12 +4,18 @@
  */
 package com.trieuvi.service.impl;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.trieuvi.pojos.User;
 import com.trieuvi.repository.UserRepository;
 import com.trieuvi.service.UserService;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,9 +34,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-    
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private Cloudinary cloudinary;
 
     @Override
     public User getUserById(int id) {
@@ -65,10 +74,18 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public boolean addUser(User user) {
-        String pass = user.getPassword();
-        user.setPassword(this.passwordEncoder.encode(pass));
-        
-        user.setUserRole("CUSTOMER");
+
+        try {
+            String pass = user.getPassword();
+            user.setPassword(this.passwordEncoder.encode(pass));
+            user.setUserRole("CUSTOMER");
+
+            Map r = this.cloudinary.uploader().upload(user.getFile().getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+            user.setAvatar((String) r.get("secure_url"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         return this.userRepository.addUser(user);
     }
 
@@ -76,23 +93,40 @@ public class UserServiceImpl implements UserService {
     public List<User> getusers(String username) {
         return this.userRepository.getusers(username);
     }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        List<User> users = this.getusers(username);
-        if (users.isEmpty()) {
-            throw new UsernameNotFoundException("Không tồn tại!");
-        }
-        User user = users.get(0);
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority(user.getUserRole()));
-        
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
-    }
+//
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        List<User> users = this.getusers(username);
+//        if (users.isEmpty()) {
+//            throw new UsernameNotFoundException("Không tồn tại!");
+//        }
+//        User user = users.get(0);
+//        Set<GrantedAuthority> authorities = new HashSet<>();
+//        authorities.add(new SimpleGrantedAuthority(user.getUserRole()));
+//        
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+//    }
 
     @Override
     public List<User> getCustomers() {
         return this.userRepository.getCustomers();
     }
 
+    @Override
+    public User getUserByUsername(String username) {
+        return this.userRepository.getUserByUsername(username);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User u = this.getUserByUsername(username);
+        if (u == null) {
+            throw new UsernameNotFoundException("Invalid username!!!");
+        }
+
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        authorities.add(new SimpleGrantedAuthority(u.getUserRole()));
+
+        return new org.springframework.security.core.userdetails.User(u.getUsername(), u.getPassword(), authorities);
+    }
 }

@@ -6,6 +6,7 @@ package com.trieuvi.configs;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.trieuvi.handlers.LoginHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,12 +17,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  *
  * @author Star
  */
+
 @Configuration
 @EnableWebSecurity
 @EnableTransactionManagement
@@ -36,6 +39,14 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    
+    @Autowired
+    private AuthenticationSuccessHandler loginSusessHandler;
+//    
+    @Bean
+    public AuthenticationSuccessHandler loginSusessHandler(){
+        return new LoginHandler();
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -47,17 +58,17 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
             throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-//
-//    @Bean
-//    public Cloudinary cloudinary() {
-//        Cloudinary cloudinary
-//                = new Cloudinary(ObjectUtils.asMap(
-//                        "cloud_name", "i-h-c-m",
-//                        "api_key", "482771674861723",
-//                        "api_secret", "UcuyEfGi4mWdqTG2f1F1e_jfJUE",
-//                        "secure", true));
-//        return cloudinary;
-//    }
+
+    @Bean
+    public Cloudinary cloudinary() {
+        Cloudinary cloudinary
+                = new Cloudinary(ObjectUtils.asMap(
+                        "cloud_name", "i-h-c-m",
+                        "api_key", "482771674861723",
+                        "api_secret", "UcuyEfGi4mWdqTG2f1F1e_jfJUE",
+                        "secure", true));
+        return cloudinary;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -65,22 +76,25 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .passwordParameter("password");
 
-        http.formLogin().defaultSuccessUrl("/")
-                .failureUrl("/login?error");
+//        http.formLogin().defaultSuccessUrl("/")
+//                .failureUrl("/login?error");
+        
+        http.formLogin().successHandler(loginSusessHandler);
 
         http.logout().logoutSuccessUrl("/login");
 
         http.exceptionHandling().accessDeniedPage("/login?accessDenied");
 
-        http.authorizeRequests().antMatchers("/").permitAll()
-//                .antMatchers("/appointment").access("hasRole('NURSE')") //                .antMatchers("/createMedicalBill").access("hasRole('DOCTOR')")
+//        http.authorizeRequests().antMatchers("/").permitAll()
+//                .antMatchers("/appointment").access("hasRole('NURSE')") //                
+//                .antMatchers("/createMedicalBill").access("hasRole('DOCTOR')")
                 //                .antMatchers("/**/management").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
                 //                .antMatchers("/**/regulation").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
-                //                .antMatchers("/stats").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
+//                                .antMatchers("/stats").access("hasAnyRole('ADMIN', 'SUPERADMIN')")
                 //                .antMatchers("/customerSche").access("hasAnyRole('NURSE', 'DOCTOR')")
                 //                .antMatchers("/payment").access("hasAnyRole('NURSE', 'DOCTOR')")
                 //                .antMatchers("/regulation").access("hasRole('SUPERADMIN')")
-                ;
+//                ;
 
         http.csrf().disable();
 

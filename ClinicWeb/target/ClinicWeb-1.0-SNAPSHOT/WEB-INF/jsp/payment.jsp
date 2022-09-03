@@ -9,87 +9,43 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<div class="row">
+<div class="row" style="margin-top: 60px">
     <div class="col-12">
         <div class="card">
             <div class="card-body table-responsive">
                 <h4 class="m-t-0 header-title mb-4"><b>Thêm phiếu thu</b></h4>
                 <c:url value="/payment" var="action" />
                 <form:form class="form-horizontal" method="post" action="${action}" modelAttribute="medicalBillDetail">
+                    <div class="d-flex flex-row my-3">
+                        <label class="col-md-3" for="schedule">Hẹn vào:</label>
+                        <form:input class="col-md-9" type="date" id="createdDate" path="createdDate" />
+                    </div>
 
+                    <div class="input-group mt-3 mb-3">
+                        <label style="width:10%">Mã thuốc: </label>
+                        <form:input class="form-control" type="text" id="medicineId" path="medicineId" placeholder="Tìm thuốc"/>
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <label style="width:10%">Số lượng: </label>
+                        <form:input class="form-control" type="number" id="quantity" path="quantity" placeholder="Tìm thuốc"/>
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <label style="width:10%">Giá: </label>
+                        <form:input class="form-control" type="text" id="price" path="price" placeholder="Tìm thuốc"/>
+                    </div>
                     <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="createddate">Ngày chi tiền</label>
+                        <label class="col-lg-2 col-form-label" for="note">Cách dùng:</label>
                         <div class="col-lg-10">
-                            <input class="form-control" id="createddate" type="date" />
+                            <form:textarea path ="howToUse" class="form-control" rows="5" id="howToUse"/>
                         </div>
                     </div>
-
-                    <div class="form-group row">
-                        <label for="quantity" class="col-lg-2 col-form-label">Số lượng <span class="text-danger">(bắt buộc)</span></label>
-                        <div class="col-lg-10">
-                            <form:input type="text" path="quantity" id="quantity" class="form-control" placeholder="Nhập vào số tiền"/>
-                        </div>
+                    <div class='d-flex flex-row-reverse' style="padding: 20px">
+                        <input type="submit" value="Thanh toán" class="btn btn-danger" />
                     </div>
-
-                    <div class="form-group row">
-                        <label for="price" class="col-lg-2 col-form-label">Số tiền <span class="text-danger">(bắt buộc)</span></label>
-                        <div class="col-lg-10">
-                            <form:input type="text" path="price" id="price" class="form-control" placeholder="Nhập vào số tiền"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 col-form-label" for="howToUse">Cách dùng <span class="text-danger">(bắt buộc)</span></label>
-                        <div class="col-lg-10">
-                            <form:textarea path ="howToUse" class="form-control" rows="5" id="howToUse"></form:textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="sel1" class="form-label">Danh muc</label>
-                        <%--<form:select path="medicineId" class="form-select">--%>
-                            <%--<c:forEach items="${medicalBillDetailId}" var="c">--%>
-                                <!--<option value="${c.id}">${c.medicineId}</option>-->
-                            <%--</c:forEach>--%>
-                        <%--</form:select>--%>
-                    </div>
-                    <div class="form-floating">
-                        <br>
-                        <input type="submit" value="Thêm chi tiêu" class="btn btn-danger" />
-                    </div>
+                    <br>
                 </form:form>
             </div> 
         </div>
     </div>
 </div>
 
-<div class="container col-md-12" style="border: 1px solid lightgray; height: 600px; margin-top: 60px">
-    <h3 class="pt-3" style="font-weight: normal">Danh sách phiếu thanh toán chờ thực thi  <span class="badge badge-success">
-            {{order_checkout_num }}
-        </span></h3>
-    <div class="container col-md-12 ">
-        <div style="padding-right: 10px" class="table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table table-striped table-bordered table-sm " cellspacing="0" >
-                <thead >
-                    <tr>
-                        <th scope="col" class="text-center">Mã phiếu khám</th>
-                        <th scope="col" class="text-center th-sm">Họ tên</th>
-                        <th scope="col" class="text-center">Năm sinh</th>
-                        <th scope="col" class="text-center">Tổng tiền</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for order in checkout_orders %}
-                    <tr class="text-center">
-                        <td >{{ order[0] }}</td>
-                        <td>{{ order[1] }}</td>
-                        <td>{{ order[2] }}</td>
-                        <td>{{ order[3][0] }} VNĐ</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
-        </div>
-    </div>
-</div>

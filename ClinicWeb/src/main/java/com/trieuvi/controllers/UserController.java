@@ -6,8 +6,10 @@ package com.trieuvi.controllers;
 
 import com.trieuvi.pojos.User;
 import com.trieuvi.service.UserService;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,9 +36,11 @@ public class UserController {
 //    }
     
     @GetMapping("/account")
-    public String list(Model model) {
+    public String list(Model model, HttpSession session) {
          model.addAttribute("user", this.userDetailsService.getUser());
          model.addAttribute("userId", this.userDetailsService.getUserById(1));
+         model.addAttribute("users", new User());
+         model.addAttribute("currentUser", session.getAttribute("currentUser"));
         
         return "account";
     }
