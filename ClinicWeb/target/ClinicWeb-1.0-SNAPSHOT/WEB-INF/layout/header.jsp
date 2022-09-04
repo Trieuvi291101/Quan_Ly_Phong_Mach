@@ -48,7 +48,7 @@
     </c:if>
     <c:if test="${currentUser.username == 'hien' or currentUser.username == 'nguyet'}">
         <ul class="navbar-nav">
-            <li><a class="nav-link" href="<c:url value="/createMedicalBill" />">Lập phiếu</a></li>
+            <li><a class="nav-link" href="<c:url value="/medicalBill" />">Lập phiếu</a></li>
         </ul>
         <ul class="navbar-nav">
             <li><a class="nav-link" href="<c:url value="/customerSche" />">Lịch khám</a></li>

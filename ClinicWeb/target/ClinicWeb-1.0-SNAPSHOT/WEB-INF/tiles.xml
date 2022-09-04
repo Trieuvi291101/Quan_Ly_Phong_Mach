@@ -44,10 +44,10 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/appointment.jsp" />
     </definition>
-    <definition name="createMedicalBill" extends="baseLayout">
+    <definition name="medicalBill" extends="baseLayout">
         <put-attribute name="title" value="Lập phiếu khám" />
         <put-attribute name="content"
-                       value="/WEB-INF/jsp/createMedicalBill.jsp" />
+                       value="/WEB-INF/jsp/medicalBill.jsp" />
     </definition>
     <definition name="payment" extends="baseLayout">
         <put-attribute name="title" value="Thanh toán" />

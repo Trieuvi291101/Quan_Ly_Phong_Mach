@@ -5,17 +5,16 @@
 package com.trieuvi.controllers;
 
 import com.trieuvi.pojos.MedicalBill;
-import com.trieuvi.pojos.MedicalBillDetail;
 import com.trieuvi.service.CustomerScheService;
 import com.trieuvi.service.MedicalBillDetailService;
 import com.trieuvi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Star
  */
 @Controller
-@ControllerAdvice
+@RequestMapping("/")
 public class CreateMedicalBillController {
     @Autowired
     private CustomerScheService customerScheService;
@@ -34,20 +33,19 @@ public class CreateMedicalBillController {
     @Autowired
     private UserService userService;
     
-    @GetMapping("/createMedicalBill")
+    @GetMapping("/medicalBill")
     public String list(Model model, @RequestParam(value = "kw", required = false, defaultValue = "") String kw) {
         model.addAttribute("customerSche", this.customerScheService.getCustomerSches());
         model.addAttribute("user", this.userService.getUser());
         model.addAttribute("users", this.userService.getUser(kw));
         model.addAttribute("customers", this.userService.getCustomerBykw(kw));
         model.addAttribute("medicalBill", new MedicalBill());
-        model.addAttribute("medicalBillDetail", new MedicalBillDetail());
 
-        return "createMedicalBill";
+        return "medicalBill";
     }
     
     
-    @PostMapping("/createMedicalBill")
+    @PostMapping("/medicalBill")
     public String createMedicalBill(Model model, @ModelAttribute(value = "medicalBill") MedicalBill m){
         String errMsg = "";
             if(this.medicalBillDetailService.addMedicalBill(m) == true){
@@ -57,7 +55,7 @@ public class CreateMedicalBillController {
         
         model.addAttribute("errMsg", errMsg);
         
-        return "createMedicalBill";
+        return "medicalBill";
     }
     
 }

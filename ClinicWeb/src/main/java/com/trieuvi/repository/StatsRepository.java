@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface StatsRepository {
     List<Object[]> totalPriceMonthStats(String kw, Date fromDate, Date toDate);
+    List<Object[]> examinationStats(String kw, Date fromDate, Date toDate);
 }

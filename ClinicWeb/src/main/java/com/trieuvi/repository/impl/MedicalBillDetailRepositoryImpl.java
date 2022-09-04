@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Star
  */
 @Repository
-@PropertySource("classpath:databases.properties")
 @Transactional
 public class MedicalBillDetailRepositoryImpl implements MedicalBillDetailRepository{
 
@@ -48,7 +47,7 @@ public class MedicalBillDetailRepositoryImpl implements MedicalBillDetailReposit
         }catch(HibernateException ex){
             System.err.println(ex.getMessage());
         } 
-        return this.addMedicalBillDetail(m);
+        return false;
     }
 
     @Override

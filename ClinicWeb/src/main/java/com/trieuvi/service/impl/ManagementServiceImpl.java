@@ -10,12 +10,14 @@ import com.trieuvi.service.ManagementService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Star
  */
 @Service
+@Transactional
 public class ManagementServiceImpl implements ManagementService{
     
     @Autowired

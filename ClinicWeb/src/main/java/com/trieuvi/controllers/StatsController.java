@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
  * @author Star
  */
 @Controller
+@RequestMapping("/")
 public class StatsController {
     @Autowired
     private StatsService statsService;
@@ -23,6 +25,7 @@ public class StatsController {
     @GetMapping("/stats")
     public String totalPriceMonthStats(Model model) {
         model.addAttribute("stats", this.statsService.totalPriceMonthStats(null, null, null));
+        model.addAttribute("examinationStats", this.statsService.examinationStats(null, null, null));
         return "stats";
     }
 }

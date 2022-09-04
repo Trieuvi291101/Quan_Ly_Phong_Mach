@@ -23,20 +23,20 @@
 
                     <div class="input-group mt-3 mb-3">
                         <label style="width:10%">Mã thuốc: </label>
-                        <form:input class="form-control" type="text" id="medicineId" path="medicineId" placeholder="Tìm thuốc"/>
+                        <form:input class="form-control" type="text" id="medicineId" path="medicineId" placeholder="Mã thuốc"/>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <label style="width:10%">Số lượng: </label>
-                        <form:input class="form-control" type="number" id="quantity" path="quantity" placeholder="Tìm thuốc"/>
+                        <form:input class="form-control" type="number" id="quantity" path="quantity" placeholder="Số lượng"/>
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <label style="width:10%">Giá: </label>
-                        <form:input class="form-control" type="text" id="price" path="price" placeholder="Tìm thuốc"/>
+                        <form:input class="form-control" type="text" id="price" path="price" placeholder="Giá"/>
                     </div>
                     <div class="form-group row">
                         <label class="col-lg-2 col-form-label" for="note">Cách dùng:</label>
                         <div class="col-lg-10">
-                            <form:textarea path ="howToUse" class="form-control" rows="5" id="howToUse"/>
+                            <form:textarea path ="howToUse" class="form-control" rows="5" id="howToUse" placeholder="Cách dùng"/>
                         </div>
                     </div>
                     <div class='d-flex flex-row-reverse' style="padding: 20px">

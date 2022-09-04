@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class StatsServiceImpl implements StatsService {
+
     @Autowired
     private StatsRepository statsRepository;
 
@@ -24,5 +25,10 @@ public class StatsServiceImpl implements StatsService {
     public List<Object[]> totalPriceMonthStats(String kw, Date fromDate, Date toDate) {
         return this.statsRepository.totalPriceMonthStats(kw, fromDate, toDate);
     }
-    
+
+    @Override
+    public List<Object[]> examinationStats(String string, Date date, Date date1) {
+        return this.statsRepository.examinationStats(string, date, date1);
+    }
+
 }
