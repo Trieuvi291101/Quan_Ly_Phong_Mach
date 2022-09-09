@@ -23,14 +23,14 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Star
  */
 @Entity
-@Table(name = "reguration")
+@Table(name = "regulation")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Reguration.findAll", query = "SELECT r FROM Reguration r"),
-    @NamedQuery(name = "Reguration.findById", query = "SELECT r FROM Reguration r WHERE r.id = :id"),
-    @NamedQuery(name = "Reguration.findByExaminationPrice", query = "SELECT r FROM Reguration r WHERE r.examinationPrice = :examinationPrice"),
-    @NamedQuery(name = "Reguration.findByCustomerQuantity", query = "SELECT r FROM Reguration r WHERE r.customerQuantity = :customerQuantity")})
-public class Reguration implements Serializable {
+    @NamedQuery(name = "Regulation.findAll", query = "SELECT r FROM Regulation r"),
+    @NamedQuery(name = "Regulation.findById", query = "SELECT r FROM Regulation r WHERE r.id = :id"),
+    @NamedQuery(name = "Regulation.findByExaminationPrice", query = "SELECT r FROM Regulation r WHERE r.examinationPrice = :examinationPrice"),
+    @NamedQuery(name = "Regulation.findByCustomerQuantity", query = "SELECT r FROM Regulation r WHERE r.customerQuantity = :customerQuantity")})
+public class Regulation implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,12 +44,12 @@ public class Reguration implements Serializable {
     @Column(name = "customer_quantity")
     private Integer customerQuantity;
     @OneToMany(mappedBy = "regulationId")
-    private Set<Receipt> receiptSet;
+    private Set<MedicalBillDetail> medicalBillDetailSet;
 
-    public Reguration() {
+    public Regulation() {
     }
 
-    public Reguration(Integer id) {
+    public Regulation(Integer id) {
         this.id = id;
     }
 
@@ -78,12 +78,12 @@ public class Reguration implements Serializable {
     }
 
     @XmlTransient
-    public Set<Receipt> getReceiptSet() {
-        return receiptSet;
+    public Set<MedicalBillDetail> getMedicalBillDetailSet() {
+        return medicalBillDetailSet;
     }
 
-    public void setReceiptSet(Set<Receipt> receiptSet) {
-        this.receiptSet = receiptSet;
+    public void setMedicalBillDetailSet(Set<MedicalBillDetail> medicalBillDetailSet) {
+        this.medicalBillDetailSet = medicalBillDetailSet;
     }
 
     @Override
@@ -96,10 +96,10 @@ public class Reguration implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Reguration)) {
+        if (!(object instanceof Regulation)) {
             return false;
         }
-        Reguration other = (Reguration) object;
+        Regulation other = (Regulation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -108,7 +108,7 @@ public class Reguration implements Serializable {
 
     @Override
     public String toString() {
-        return "com.trieuvi.pojos.Reguration[ id=" + id + " ]";
+        return "com.trieuvi.pojos.Regulation[ id=" + id + " ]";
     }
     
 }

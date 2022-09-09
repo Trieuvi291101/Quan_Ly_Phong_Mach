@@ -19,4 +19,59 @@ Software Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content"
                        value="/WEB-INF/jsp/index.jsp" />
     </definition>
+    <definition name="customerSche" extends="baseLayout">
+        <put-attribute name="title" value="Quản lý lịch khám" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/customerSche.jsp" />
+    </definition>
+    <definition name="regulation" extends="baseLayout">
+        <put-attribute name="title" value="Quy định" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/regulation.jsp" />
+    </definition>
+    <definition name="stats" extends="baseLayout">
+        <put-attribute name="title" value="Thống kê" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/stats.jsp" />
+    </definition>
+    <definition name="account" extends="baseLayout">
+        <put-attribute name="title" value="Tài khoản" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/account.jsp" />
+    </definition>
+    <definition name="appointment" extends="baseLayout">
+        <put-attribute name="title" value="Đặt hẹn" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/appointment.jsp" />
+    </definition>
+    <definition name="medicalBill" extends="baseLayout">
+        <put-attribute name="title" value="Lập phiếu khám" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/medicalBill.jsp" />
+    </definition>
+    <definition name="payment" extends="baseLayout">
+        <put-attribute name="title" value="Thanh toán" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/payment.jsp" />
+    </definition>
+    <definition name="management" extends="baseLayout">
+        <put-attribute name="title" value="quản lý" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/management.jsp" />
+    </definition>
+    <definition name="login" extends="baseLayout">
+        <put-attribute name="title" value="Đăng nhập" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/login.jsp" />
+    </definition>
+    <definition name="register" extends="baseLayout">
+        <put-attribute name="title" value="Đăng ký" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/register.jsp" />
+    </definition>
+    <definition name="formAppointment" extends="baseLayout">
+        <put-attribute name="title" value="Đặt hẹn tại quầy" />
+        <put-attribute name="content"
+                       value="/WEB-INF/jsp/formAppointment.jsp" />
+    </definition>
 </tiles-definitions>

@@ -1,15 +1,18 @@
 package com.trieuvi.pojos;
 
+import com.trieuvi.pojos.MedicalBillDetail;
 import com.trieuvi.pojos.Producer;
 import java.util.Date;
 import javax.annotation.Generated;
+import javax.persistence.metamodel.SetAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-08-26T20:46:00")
+@Generated(value="EclipseLink-2.7.9.v20210604-rNA", date="2022-09-05T14:37:26")
 @StaticMetamodel(Medicine.class)
 public class Medicine_ { 
 
+    public static volatile SetAttribute<Medicine, MedicalBillDetail> medicalBillDetailSet;
     public static volatile SingularAttribute<Medicine, Integer> quantity;
     public static volatile SingularAttribute<Medicine, Float> price;
     public static volatile SingularAttribute<Medicine, Date> outOfDate;

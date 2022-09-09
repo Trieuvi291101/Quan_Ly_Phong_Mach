@@ -10,6 +10,7 @@
     <class>com.trieuvi.pojos.User</class>
     <class>com.trieuvi.pojos.MedicalBillDetail</class>
     <class>com.trieuvi.pojos.Receipt</class>
+    <class>com.trieuvi.pojos.Regulation</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/phongmachtunhan?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

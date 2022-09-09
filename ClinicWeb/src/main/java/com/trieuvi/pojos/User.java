@@ -20,10 +20,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -64,8 +66,6 @@ public class User implements Serializable {
     @Size(max = 50)
     @Column(name = "last_name")
     private String lastName;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "birthday")
     @Temporal(TemporalType.TIMESTAMP)
     private Date birthday;
@@ -84,7 +84,7 @@ public class User implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 100)
     @Column(name = "password")
     private String password;
     @Size(max = 100)
@@ -109,12 +109,14 @@ public class User implements Serializable {
     private String email;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     private Set<MedicalBill> medicalBillSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
+    @OneToMany(mappedBy = "customerId")
     private Set<CustomerSche> customerScheSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerId")
-    private Set<Receipt> receiptSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    private Set<Receipt> receiptSet1;
+    @OneToMany(mappedBy = "customerId")
+    private Set<MedicalBillDetail> medicalBillDetailSet;
+    @Transient
+    private String confirmPassword;
+    @Transient
+    private MultipartFile file;
 
     public User() {
     }
@@ -123,10 +125,9 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String firstName, Date birthday, String phoneNumber, String username, String password, String userRole) {
+    public User(Integer id, String firstName, String phoneNumber, String username, String password, String userRole) {
         this.id = id;
         this.firstName = firstName;
-        this.birthday = birthday;
         this.phoneNumber = phoneNumber;
         this.username = username;
         this.password = password;
@@ -264,21 +265,12 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Set<Receipt> getReceiptSet() {
-        return receiptSet;
+    public Set<MedicalBillDetail> getMedicalBillDetailSet() {
+        return medicalBillDetailSet;
     }
 
-    public void setReceiptSet(Set<Receipt> receiptSet) {
-        this.receiptSet = receiptSet;
-    }
-
-    @XmlTransient
-    public Set<Receipt> getReceiptSet1() {
-        return receiptSet1;
-    }
-
-    public void setReceiptSet1(Set<Receipt> receiptSet1) {
-        this.receiptSet1 = receiptSet1;
+    public void setMedicalBillDetailSet(Set<MedicalBillDetail> medicalBillDetailSet) {
+        this.medicalBillDetailSet = medicalBillDetailSet;
     }
 
     @Override
@@ -304,6 +296,34 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "com.trieuvi.pojos.User[ id=" + id + " ]";
+    }
+
+    /**
+     * @return the confirmPassword
+     */
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    /**
+     * @param confirmPassword the confirmPassword to set
+     */
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    /**
+     * @return the file
+     */
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
     
 }

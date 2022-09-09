@@ -6,6 +6,7 @@ package com.trieuvi.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +17,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -58,6 +61,8 @@ public class Medicine implements Serializable {
     @Column(name = "out_of_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date outOfDate;
+    @OneToMany(mappedBy = "medicineId")
+    private Set<MedicalBillDetail> medicalBillDetailSet;
     @JoinColumn(name = "producer_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Producer producerId;
@@ -112,6 +117,15 @@ public class Medicine implements Serializable {
 
     public void setOutOfDate(Date outOfDate) {
         this.outOfDate = outOfDate;
+    }
+
+    @XmlTransient
+    public Set<MedicalBillDetail> getMedicalBillDetailSet() {
+        return medicalBillDetailSet;
+    }
+
+    public void setMedicalBillDetailSet(Set<MedicalBillDetail> medicalBillDetailSet) {
+        this.medicalBillDetailSet = medicalBillDetailSet;
     }
 
     public Producer getProducerId() {

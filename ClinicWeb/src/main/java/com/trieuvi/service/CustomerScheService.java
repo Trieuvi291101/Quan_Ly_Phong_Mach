@@ -5,6 +5,7 @@
 package com.trieuvi.service;
 
 import com.trieuvi.pojos.CustomerSche;
+import com.trieuvi.pojos.MedicalBill;
 import java.util.List;
 
 /**
@@ -13,4 +14,7 @@ import java.util.List;
  */
 public interface CustomerScheService {
     List<CustomerSche> getCustomerSches();
+    List<MedicalBill> getMedicalBill();
+    List<CustomerSche> getCustomerFormed();
+     boolean addCustomerSche(CustomerSche cus);
 }
